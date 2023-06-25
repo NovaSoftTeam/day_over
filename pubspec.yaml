@@ -10,7 +10,7 @@ version: 1.0.0+1
 environment:
   sdk: '>=2.18.2 <3.0.0'
 
-.
+
 dependencies:
   flutter:
     sdk: flutter
@@ -19,10 +19,12 @@ dependencies:
 
   # Core packages
   flutter_riverpod: ^2.3.6
+  kartal:
 
   # Firabase packages
   cloud_firestore: ^4.8.1
   firebase_core: ^2.14.0
+  firebase_auth: ^4.6.3
 
   # Product packages
   animated_text_kit: ^4.2.2

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "859172785483",
+    "project_id": "dayover-ae9f5",
+    "storage_bucket": "dayover-ae9f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859172785483:android:cd22cdfc33b733061b6cce",
+        "android_client_info": {
+          "package_name": "com.example.day_over"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859172785483-903umiucjtb79rk5vjpkt06ita2l0res.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpI6oRWi_LbQhDT7r6ecDATePzUy37Mng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859172785483-903umiucjtb79rk5vjpkt06ita2l0res.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
