@@ -1,8 +1,7 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:day_over/product/constants/color_constants.dart';
 import 'package:day_over/product/constants/string_constants.dart';
+import 'package:day_over/product/widgets/wavy_text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
@@ -16,16 +15,11 @@ class SplashView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: AnimatedTextKit(
-                animatedTexts: [
-                  WavyAnimatedText(StringConstants.appName, textStyle: context.textTheme.headlineSmall?.copyWith(
-                          color: ColorConstants.white,
-                          fontWeight: FontWeight.bold)),
-                ],
-                isRepeatingAnimation: true,
-              ),
-            ),
+                padding: const EdgeInsets.all(8.0),
+                child: const WavyTextWidget(
+                  title: StringConstants.appName,
+                  textColor: ColorConstants.white,
+                )),
           ],
         ),
       ),
