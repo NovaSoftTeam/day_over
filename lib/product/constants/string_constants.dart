@@ -6,4 +6,5 @@ class StringConstants {
 
   static const String appName = 'DayOver';
   static const String signInButtonText = "Sign In";
+  static const String signUpButtonText = "Sign Up";
 }
