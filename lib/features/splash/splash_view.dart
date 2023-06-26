@@ -1,3 +1,4 @@
+import 'package:day_over/features/splash/decision_splash_view.dart';
 import 'package:day_over/product/constants/color_constants.dart';
 import 'package:day_over/product/constants/string_constants.dart';
 import 'package:day_over/product/widgets/wavy_text_widget.dart';
@@ -8,6 +9,13 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration(milliseconds: 3000), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => DecisionSplashView()),
+      );
+    });
+
     return Scaffold(
       backgroundColor: ColorConstants.purpleDark,
       body: Center(
