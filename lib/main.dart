@@ -1,4 +1,3 @@
-import 'package:day_over/features/sign_up/sign_up_view.dart';
 import 'package:day_over/features/splash/splash_view.dart';
 import 'package:day_over/product/initialize/app_start.dart';
 import 'package:flutter/material.dart';

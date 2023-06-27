@@ -21,6 +21,8 @@ dependencies:
   flutter_riverpod: ^2.3.6
   kartal:
 
+  loading_animation_widget: ^1.2.0+4
+
   # Firabase packages
   cloud_firestore: ^4.8.1
   firebase_core: ^2.14.0

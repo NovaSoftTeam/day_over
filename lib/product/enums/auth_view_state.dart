@@ -1,1 +1,1 @@
-enum ViewState { noAuth, yesAuth }
+enum AuthViewState { noAuth, yesAuth }

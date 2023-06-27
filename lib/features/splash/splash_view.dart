@@ -9,10 +9,10 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(milliseconds: 3000), () {
+    Future.delayed(const Duration(milliseconds: 3000), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => DecisionSplashView()),
+        MaterialPageRoute(builder: (context) => const DecisionSplashView()),
       );
     });
 
@@ -22,9 +22,9 @@ class SplashView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: const WavyTextWidget(
+            const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: WavyTextWidget(
                   title: StringConstants.appName,
                   textColor: ColorConstants.white,
                 )),
