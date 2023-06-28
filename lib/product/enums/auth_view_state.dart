@@ -1,1 +1,0 @@
-enum AuthViewState { noAuth, yesAuth }

@@ -9,7 +9,7 @@ class HomeView extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text("Hosgeldiniz")],
+          children: const [Text("Hosgeldiniz")],
         ),
       ),
     );

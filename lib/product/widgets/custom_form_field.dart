@@ -33,7 +33,9 @@ class CustomFormField extends StatelessWidget {
           label: Text(labelText),
           hintText: hintText,
           prefixIcon: icon,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20))),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20), 
+            )),
     );
   }
 }

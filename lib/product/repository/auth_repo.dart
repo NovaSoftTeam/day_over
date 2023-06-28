@@ -5,7 +5,8 @@ import 'package:day_over/product/services/firebase_auth_service.dart';
 enum AppMode { debug, release }
 
 class AuthRepository implements AuthBase {
-  final FireBaseAuthService _authService = FireBaseAuthService();
+  final 
+  FireBaseAuthService _authService = FireBaseAuthService();
 
   // if appmode is debug then firebase services works
   AppMode appMode = AppMode.debug;

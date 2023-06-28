@@ -43,7 +43,8 @@ class SignViewNotifier extends StateNotifier<ViewState> implements AuthBase {
       state = ViewState.busy;
       return await _authRepo.signInWithEmail(email, password);
     } catch (e) {
-      throw FirebaseCustomException(description: "$e");
+      return null;
+      //throw FirebaseCustomException(description: "$e");
     } finally {
       state = ViewState.idle;
     }
@@ -53,3 +54,5 @@ class SignViewNotifier extends StateNotifier<ViewState> implements AuthBase {
 final signViewProvider = StateNotifierProvider<SignViewNotifier, ViewState>((ref) {
   return SignViewNotifier();
 });
+
+

@@ -44,6 +44,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
     final viewState = ref.watch(signViewProvider);
 
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       body: viewState == ViewState.idle
           ? Center(
               child: SingleChildScrollView(
@@ -94,6 +95,36 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                                 ),
                               ),
                             ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(18.0),
+                            child: Row(
+                              children: const [
+                                 Expanded(
+                                  child: Divider(
+                                    thickness: 0.5,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                Text("OR"),
+                                Expanded(
+                                  child: Divider(
+                                    thickness: 1,
+                                    color: Colors.grey,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                "assets/images/google_logo.jpg",
+                                height: 50,
+                              ),
+                              const Text("  Log in with Google"),
+                            ],
                           ),
                         ],
                       )),
