@@ -20,38 +20,51 @@ class _DashboardState extends State<Dashboard> {
     });
   }
 
-  List _pages = [HomeView()];
+  final List _pages = const [
+    HomeView(),
+    Center(
+      child: Icon(Icons.search),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[currentIndex],
-      bottomNavigationBar:
-          GNav(
-            backgroundColor: Colors.black,
-            activeColor: ColorConstants.white,
-            color: Colors.white,
-            onTabChange: (value) {
-              goToPage(value);
-            }, 
-            tabs: const [
-        GButton(
-          icon: Icons.home,
-          text: "Home",
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: GNav(
+              backgroundColor: Colors.black,
+              activeColor: ColorConstants.white,
+              color: Colors.white,
+              duration: const Duration(milliseconds: 900),
+              tabBackgroundColor: Colors.grey.shade600,
+              gap: 10,
+              onTabChange: (value) {
+                goToPage(value);
+              },
+              tabs: const [
+                GButton(
+                  icon: Icons.home,
+                  text: "Home",
+                ),
+                GButton(
+                  icon: Icons.favorite_border,
+                  text: "Likes",
+                ),
+                GButton(
+                  icon: Icons.person,
+                  text: "Profile",
+                ),
+                GButton(
+                  icon: Icons.settings,
+                  text: "Settings",
+                )
+              ]),
         ),
-        GButton(
-          icon: Icons.search,
-          text: "Search",
-        ),
-        GButton(
-          icon: Icons.person,
-          text: "Profile",
-        ),
-        GButton(
-          icon: Icons.settings,
-          text: "Settings",
-        )
-      ]),
+      ),
     );
   }
 }
