@@ -1,4 +1,4 @@
-import 'package:day_over/features/home/home_view.dart';
+import 'package:day_over/features/dashboard/dashboard.dart';
 import 'package:day_over/features/sign_up/sign_up_view.dart';
 import 'package:day_over/features/splash/splash_view_model.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ class DecisionSplashView extends ConsumerWidget {
 
     return state == AuthViewState.noAuth
         ? const SignUpView()
-        : const HomeView();
+        : const Dashboard();
   }
 }
 
