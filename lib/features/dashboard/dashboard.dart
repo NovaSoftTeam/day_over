@@ -1,5 +1,4 @@
 import 'package:day_over/features/home/home_view.dart';
-import 'package:day_over/features/sign_up/sign_up_view.dart';
 import 'package:day_over/product/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -22,8 +21,10 @@ class _DashboardState extends State<Dashboard> {
 
   final List _pages = const [
     HomeView(),
-    Center(
-      child: Icon(Icons.search),
+    SafeArea(
+      child: Center(
+        child: Icon(Icons.search),
+      ),
     ),
   ];
 

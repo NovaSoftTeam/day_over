@@ -21,8 +21,8 @@ class SplashView extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Padding(
+          children: const [
+            Padding(
                 padding: EdgeInsets.all(8.0),
                 child: WavyTextWidget(
                   title: StringConstants.appName,
