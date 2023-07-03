@@ -1,6 +1,6 @@
 # day_over
 
-A new Flutter project.
+## Welcome Day Over
 
 ## Getting Started
 
