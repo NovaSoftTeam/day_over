@@ -26,6 +26,16 @@ class _DashboardState extends State<Dashboard> {
         child: Icon(Icons.search),
       ),
     ),
+     SafeArea(
+      child: Center(
+        child: Icon(Icons.person),
+      ),
+    ),
+     SafeArea(
+      child: Center(
+        child: Icon(Icons.settings),
+      ),
+    ),
   ];
 
   @override
