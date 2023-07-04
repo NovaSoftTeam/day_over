@@ -7,4 +7,5 @@ class StringConstants {
   static const String appName = 'DayOver';
   static const String signInText = "Sign In";
   static const String signUpText = "Sign Up";
+  static const String haveAccountText = "Already Have Account ? Sign In";
 }

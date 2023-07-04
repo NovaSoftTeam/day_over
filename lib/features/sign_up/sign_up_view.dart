@@ -62,7 +62,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
     final viewState = ref.watch(signViewProvider);
 
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      //backgroundColor: Colors.grey[300],
       body: viewState == ViewState.idle
           ? SingleChildScrollView(
               child: Column(
@@ -95,7 +95,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                               icon: const Icon(Icons.person),
                             ),
                             const SizedBox(
-                              height: 10,
+                              height: 15,
                             ),
                             CustomFormField(
                               controller: _emailController,
@@ -104,7 +104,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                               icon: const Icon(Icons.mail),
                             ),
                             const SizedBox(
-                              height: 10,
+                              height: 15,
                             ),
                             CustomFormField(
                               controller: _passwordController,
@@ -114,9 +114,24 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                               isObscureText: true,
                             ),
                             const SizedBox(
-                              height: 10,
+                              height: 15,
                             ),
-                            customFormSubmitButton()
+                            customFormSubmitButton(),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                TextButton(
+                                    style: TextButton.styleFrom(
+                                        foregroundColor:
+                                            ColorConstants.mainBlueColor),
+                                    onPressed: () {},
+                                    child: const Text(
+                                        StringConstants.haveAccountText))
+                              ],
+                            )
                           ],
                         )),
                   ),
