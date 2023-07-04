@@ -5,6 +5,7 @@ class StringConstants {
   const StringConstants._();
 
   static const String appName = 'DayOver';
-  static const String signInButtonText = "Sign In";
-  static const String signUpButtonText = "Sign Up";
+  static const String signInText = "Sign In";
+  static const String signUpText = "Sign Up";
+  static const String haveAccountText = "Already Have Account ? Sign In";
 }
