@@ -1,12 +1,11 @@
 import 'package:day_over/product/models/current_user_model.dart';
-import 'package:day_over/product/services/auth_base.dart';
-import 'package:day_over/product/services/firebase_auth_service.dart';
+import 'package:day_over/product/services/authentication_services/auth_base.dart';
+import 'package:day_over/product/services/authentication_services/firebase_auth_service.dart';
 
 enum AppMode { debug, release }
 
 class AuthRepository implements AuthBase {
-  final 
-  FireBaseAuthService _authService = FireBaseAuthService();
+  final FireBaseAuthService _authService = FireBaseAuthService();
 
   // if appmode is debug then firebase services works
   AppMode appMode = AppMode.debug;
