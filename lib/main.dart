@@ -1,5 +1,7 @@
 import 'package:day_over/features/splash/splash_view.dart';
+import 'package:day_over/features/task/task_view.dart';
 import 'package:day_over/product/initialize/app_start.dart';
+import 'package:day_over/product/widgets/task_list_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SplashView(),
+      home: const TaskView(),
     );
   }
 }

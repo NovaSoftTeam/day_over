@@ -1,6 +1,6 @@
 import 'package:day_over/product/models/current_user_model.dart';
 import 'package:day_over/product/repository/auth_repo.dart';
-import 'package:day_over/product/services/auth_base.dart';
+import 'package:day_over/product/services/authentication_services/auth_base.dart';
 import 'package:day_over/product/utility/firebase_custom_exception.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
