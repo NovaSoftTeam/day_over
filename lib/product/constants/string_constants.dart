@@ -11,4 +11,5 @@ class StringConstants {
   static const String informationScreenHiText = "Hi, Welcome to";
   static const String informationScreenDayOver = "Day Over!";
   static const String informationFirstText = "We build scalable intelligent mobile applications that simplify people's lives.";
+  static const String informationSecondPageButtonText = "Next";
 }
