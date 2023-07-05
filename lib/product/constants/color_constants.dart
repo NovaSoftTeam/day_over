@@ -10,4 +10,6 @@ class ColorConstants {
   static const Color taskListItemFirstColor =
       Color.fromRGBO(93, 224, 230, 0.88);
   static const Color taskListItemLastColor = Color.fromRGBO(0, 74, 173, 1);
+  static const Color informationScreenColor = Color.fromARGB(255, 13, 99, 248);
+  static const Color informationScreenBoxColor = Color.fromARGB(255, 171, 171, 172);
 }

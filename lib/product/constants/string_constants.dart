@@ -8,4 +8,7 @@ class StringConstants {
   static const String signInText = "Sign In";
   static const String signUpText = "Sign Up";
   static const String haveAccountText = "Already Have Account ? Sign In";
+  static const String informationScreenHiText = "Hi, Welcome to";
+  static const String informationScreenDayOver = "Day Over!";
+  static const String informationFirstText = "We build scalable intelligent mobile applications that simplify people's lives.";
 }

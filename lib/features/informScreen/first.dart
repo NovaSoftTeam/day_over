@@ -1,3 +1,6 @@
+import 'package:day_over/product/constants/color_constants.dart';
+import 'package:day_over/product/constants/image_path_constants.dart';
+import 'package:day_over/product/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeOne extends StatelessWidget {
@@ -19,7 +22,7 @@ class WelcomeOne extends StatelessWidget {
       containerHeight = MediaQuery.of(context).size.height / 1.55;
     }
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 13, 99, 248),
+      backgroundColor: ColorConstants.informationScreenColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -30,38 +33,38 @@ class WelcomeOne extends StatelessWidget {
                 height: containerHeight,
                 child: const Image(
                   fit: BoxFit.fill,
-                  image: AssetImage('assets/informScreenImages/FirstPng.png'),
+                  image: AssetImage(ImagePathConstants.informationFirstScreenImage),
                 ),
               ),
               Container(
                 padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0),
                 child: Text(
+                  StringConstants.informationScreenHiText,
                     style: TextStyle(
                       fontSize: textSize,
                       color: Colors.white,
                       fontFamily: 'Poppins-Bold',
-                    ),
-                    'Hi, Welcome to'),
+                    ),),
               ),
               Text(
+                StringConstants.informationScreenDayOver,
                   style: TextStyle(
                     fontSize: textSize,
                     color: Colors.white,
                     fontFamily: 'Poppins-Bold',
-                  ),
-                  'Day Over!'),
+                  ),),
               Container(
                 padding: const EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 0),
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
+                    StringConstants.informationFirstText,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: textSize / 2,
                         color: Colors.white,
                         fontFamily: 'OpenSans-Light',
-                      ),
-                      "We build scalable intelligent mobile applications that simplify people's lives."),
+                      ),),
                 ),
               ),
               const SizedBox(
@@ -75,9 +78,9 @@ class WelcomeOne extends StatelessWidget {
                     Container(
                       width: MediaQuery.of(context).size.width / 25,
                       height: MediaQuery.of(context).size.height / 120,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.rectangle,
-                        color: Colors.white,
+                        color: ColorConstants.white,
                       ),
                     ),
                     const SizedBox(
@@ -86,9 +89,9 @@ class WelcomeOne extends StatelessWidget {
                     Container(
                       width: MediaQuery.of(context).size.width / 25,
                       height: MediaQuery.of(context).size.height / 120,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.rectangle,
-                        color: Color.fromARGB(255, 171, 171, 172),
+                        color: ColorConstants.informationScreenBoxColor,
                       ),
                     ),
                   ],
