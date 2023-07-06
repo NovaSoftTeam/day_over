@@ -1,7 +1,9 @@
+import 'package:day_over/features/sign_in/sign_in_view.dart';
 import 'package:day_over/features/splash/splash_view.dart';
 import 'package:day_over/product/initialize/app_start.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 
 Future<void> main() async {
   await ApplicationStart.init();
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SplashView(),
+      home: const SignInView(),
     );
   }
 }

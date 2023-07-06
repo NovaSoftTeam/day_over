@@ -112,6 +112,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                               labelText: "Password",
                               icon: const Icon(Icons.lock),
                               isObscureText: true,
+
                             ),
                             const SizedBox(
                               height: 15,
