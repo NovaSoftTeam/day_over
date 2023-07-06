@@ -102,6 +102,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                               labelText: "Email",
                               hintText: "Email",
                               icon: const Icon(Icons.mail),
+                              keyBoardType: TextInputType.emailAddress,
                             ),
                             const SizedBox(
                               height: 15,

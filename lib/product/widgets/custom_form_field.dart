@@ -7,13 +7,15 @@ class CustomFormField extends StatelessWidget {
       required this.hintText,
       required this.labelText,
       this.isObscureText,
-      this.icon});
+      this.icon,
+      this.keyBoardType=TextInputType.text});
 
   final TextEditingController controller;
   final String hintText;
   final String labelText;
   final bool? isObscureText;
   final Icon? icon;
+  final TextInputType? keyBoardType;
 
   @override
   Widget build(BuildContext context) {
@@ -22,20 +24,20 @@ class CustomFormField extends StatelessWidget {
         controller.text = newValue!;
       },
       validator: (value) {
-        if(value == null || value.length < 8){
+        if (value == null || value.length < 8) {
           return "$value must not be empty or less than 8 charachters";
         }
       },
       obscureText: isObscureText == null ? false : isObscureText!,
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: keyBoardType,
       controller: controller,
       decoration: InputDecoration(
           label: Text(labelText),
           hintText: hintText,
           prefixIcon: icon,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20), 
-            )),
+            borderRadius: BorderRadius.circular(20),
+          )),
     );
   }
 }

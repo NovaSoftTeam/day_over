@@ -49,4 +49,5 @@ class CustomAppBar extends ConsumerWidget {
       ],
     );
   }
+  
 }
