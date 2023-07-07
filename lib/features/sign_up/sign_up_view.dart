@@ -92,7 +92,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                               controller: _usernameController,
                               labelText: "Username",
                               hintText: "Username",
-                              icon: const Icon(Icons.person),
+                              leadingIcon: const Icon(Icons.person),
                             ),
                             const SizedBox(
                               height: 15,
@@ -101,7 +101,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                               controller: _emailController,
                               labelText: "Email",
                               hintText: "Email",
-                              icon: const Icon(Icons.mail),
+                              leadingIcon: const Icon(Icons.mail),
                               keyBoardType: TextInputType.emailAddress,
                             ),
                             const SizedBox(
@@ -111,7 +111,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                               controller: _passwordController,
                               hintText: "Password",
                               labelText: "Password",
-                              icon: const Icon(Icons.lock),
+                              leadingIcon: const Icon(Icons.lock),
                               isObscureText: true,
                             ),
                             const SizedBox(

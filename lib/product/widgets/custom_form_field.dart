@@ -7,14 +7,16 @@ class CustomFormField extends StatelessWidget {
       required this.hintText,
       required this.labelText,
       this.isObscureText,
-      this.icon,
+      this.leadingIcon,
+      this.suffixIcon,
       this.keyBoardType=TextInputType.text});
 
   final TextEditingController controller;
   final String hintText;
   final String labelText;
   final bool? isObscureText;
-  final Icon? icon;
+  final Icon? leadingIcon;
+  final Icon? suffixIcon; 
   final TextInputType? keyBoardType;
 
   @override
@@ -34,7 +36,8 @@ class CustomFormField extends StatelessWidget {
       decoration: InputDecoration(
           label: Text(labelText),
           hintText: hintText,
-          prefixIcon: icon,
+          prefixIcon: leadingIcon,
+          suffixIcon: suffixIcon,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
           )),
