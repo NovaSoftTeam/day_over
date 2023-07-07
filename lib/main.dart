@@ -1,3 +1,6 @@
+import 'package:day_over/features/profileScreen/edit.dart';
+import 'package:day_over/features/profileScreen/profile.dart';
+import 'package:day_over/features/sign_up/sign_up_view.dart';
 import 'package:day_over/features/splash/splash_view.dart';
 import 'package:day_over/features/task/task_view.dart';
 import 'package:day_over/product/initialize/app_start.dart';
@@ -15,14 +18,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const TaskView(),
+      // home: const TaskView(),
+      home: const Profile(),
     );
   }
 }
