@@ -14,4 +14,5 @@ class ImagePathConstants {
   static const String aboutImage = "assets/iconImages/hakkinda.png";
   static const String voteImage = "assets/iconImages/uygulamayiOyla.png";
   static const String editProfileImage = "assets/iconImages/profiliDuzenle.png";
+  static const String signInImage = "assets/images/wc_dayover.png";
 }

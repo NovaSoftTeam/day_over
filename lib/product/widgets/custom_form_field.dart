@@ -4,19 +4,19 @@ class CustomFormField extends StatelessWidget {
   const CustomFormField(
       {super.key,
       required this.controller,
-      required this.hintText,
       required this.labelText,
+      this.hintText,
       this.isObscureText,
       this.leadingIcon,
       this.suffixIcon,
-      this.keyBoardType=TextInputType.text});
+      this.keyBoardType = TextInputType.text});
 
   final TextEditingController controller;
-  final String hintText;
   final String labelText;
+  final String? hintText;
   final bool? isObscureText;
   final Icon? leadingIcon;
-  final Icon? suffixIcon; 
+  final Icon? suffixIcon;
   final TextInputType? keyBoardType;
 
   @override

@@ -91,7 +91,6 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                             CustomFormField(
                               controller: _usernameController,
                               labelText: "Username",
-                              hintText: "Username",
                               leadingIcon: const Icon(Icons.person),
                             ),
                             const SizedBox(
@@ -100,7 +99,6 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                             CustomFormField(
                               controller: _emailController,
                               labelText: "Email",
-                              hintText: "Email",
                               leadingIcon: const Icon(Icons.mail),
                               keyBoardType: TextInputType.emailAddress,
                             ),
@@ -109,7 +107,6 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                             ),
                             CustomFormField(
                               controller: _passwordController,
-                              hintText: "Password",
                               labelText: "Password",
                               leadingIcon: const Icon(Icons.lock),
                               isObscureText: true,
