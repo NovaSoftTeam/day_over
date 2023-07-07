@@ -1,5 +1,10 @@
 import 'package:day_over/features/profileScreen/edit.dart';
 import 'package:flutter/material.dart';
+import 'package:day_over/product/constants/image_path_constants.dart';
+import 'package:day_over/product/constants/string_constants.dart';
+import 'package:day_over/product/constants/text_fonts_constants.dart';
+import 'package:day_over/product/widgets/custom_app_bar.dart';
+import 'package:day_over/product/widgets/custom_drawer.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -26,94 +31,11 @@ class _ProfileState extends State<Profile> {
     }
     return SafeArea(
       child: Scaffold(
-        drawer: Drawer(
-          child: ListView(
-            children: [
-              DrawerHeader(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/informScreenImages/image.png'),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    Container(),
-                  ],
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.home),
-                title: Text('Ana Sayfa'),
-              ),
-              ListTile(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Profile(),
-                    ),
-                  );
-                },
-                leading: Icon(Icons.person),
-                title: Text('Profil'),
-              ),
-              ListTile(
-                leading: Icon(Icons.graphic_eq),
-                title: Text('Veriler'),
-              ),
-              ListTile(
-                leading: Icon(Icons.store),
-                title: Text('Mağaza'),
-              ),
-              ListTile(
-                leading: Icon(Icons.art_track),
-                title: Text('Art Book'),
-              ),
-              ListTile(
-                leading: Icon(Icons.check),
-                title: Text('Görevler'),
-              ),
-            ],
-          ),
-        ),
-        appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.black),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          title: Text(
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'GlacialIndifference-Regular',
-                color: Colors.black,
-                fontSize: textSize,
-              ),
-              'Profil'),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 10.0, 0),
-              child: ElevatedButton.icon(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                    Colors.white,
-                  ),
-                  elevation: MaterialStateProperty.all(0.0),
-                ),
-                onPressed: () {},
-                icon: Image.asset('assets/informScreenImages/coin.png'),
-                label: const Text(
-                  '450',
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+        drawer: const CustomDrawer(),
         body: SingleChildScrollView(
           child: Column(
             children: [
+              CustomAppBar(appBarText: "Profile", textSize: textSize),
               Container(
                 child: Card(
                   child: SizedBox(
@@ -153,7 +75,8 @@ class _ProfileState extends State<Profile> {
                               children: [
                                 Text(
                                   style: TextStyle(
-                                    fontFamily: 'GlacialIndifference-Regular',
+                                    fontFamily: TextFontsConstants
+                                        .glacialIndifferenceRegular,
                                     fontSize: textSize / 1.5,
                                   ),
                                   'age: 70',
@@ -163,7 +86,8 @@ class _ProfileState extends State<Profile> {
                                 ),
                                 Text(
                                   style: TextStyle(
-                                    fontFamily: 'GlacialIndifference-Regular',
+                                    fontFamily: TextFontsConstants
+                                        .glacialIndifferenceRegular,
                                     fontSize: textSize / 1.5,
                                   ),
                                   'boy: 196',
@@ -174,7 +98,8 @@ class _ProfileState extends State<Profile> {
                               children: [
                                 Text(
                                   style: TextStyle(
-                                    fontFamily: 'GlacialIndifference-Regular',
+                                    fontFamily: TextFontsConstants
+                                        .glacialIndifferenceRegular,
                                     fontSize: textSize / 1.5,
                                   ),
                                   'kilo: 86',
@@ -184,7 +109,8 @@ class _ProfileState extends State<Profile> {
                                 ),
                                 Text(
                                   style: TextStyle(
-                                    fontFamily: 'GlacialIndifference-Regular',
+                                    fontFamily: TextFontsConstants
+                                        .glacialIndifferenceRegular,
                                     fontSize: textSize / 1.5,
                                   ),
                                   'cinsiyet: erkek',
@@ -215,16 +141,17 @@ class _ProfileState extends State<Profile> {
                       );
                     },
                     title: Text(
-                        style: TextStyle(
-                          fontFamily: 'glacial-indifference-bold',
-                          fontSize: textSize / 1.5,
-                        ),
-                        'Profili Düzenle'),
-                    leading: const CircleAvatar(
-                      backgroundImage: AssetImage(
-                          'assets/informScreenImages/profiliDuzenle.png'),
+                      StringConstants.editProfile,
+                      style: TextStyle(
+                        fontFamily: 'glacial-indifference-bold',
+                        fontSize: textSize / 1.5,
+                      ),
                     ),
-                    trailing: Icon(Icons.arrow_forward_ios),
+                    leading: const CircleAvatar(
+                      backgroundImage:
+                          AssetImage(ImagePathConstants.editProfileImage),
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
                   ),
                 ),
               ),
@@ -233,12 +160,13 @@ class _ProfileState extends State<Profile> {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
                   child: Text(
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontFamily: 'Poppins-Medium',
-                        fontSize: textSize / 1.15,
-                      ),
-                      'Genel Ayarlar'),
+                    StringConstants.settings,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontFamily: 'Poppins-Medium',
+                      fontSize: textSize / 1.15,
+                    ),
+                  ),
                 ),
               ),
               Padding(
@@ -339,16 +267,17 @@ class _ProfileState extends State<Profile> {
                           });
                     },
                     title: Text(
-                        style: TextStyle(
-                          fontFamily: 'glacial-indifference-bold',
-                          fontSize: textSize / 1.5,
-                        ),
-                        'Hakkında'),
+                      StringConstants.aboutApp,
+                      style: TextStyle(
+                        fontFamily: 'glacial-indifference-bold',
+                        fontSize: textSize / 1.5,
+                      ),
+                    ),
                     leading: const CircleAvatar(
                       backgroundImage:
-                          AssetImage('assets/informScreenImages/hakkinda.png'),
+                          AssetImage(ImagePathConstants.aboutImage),
                     ),
-                    trailing: Icon(Icons.arrow_forward_ios),
+                    trailing: const Icon(Icons.arrow_forward_ios),
                   ),
                 ),
               ),
@@ -368,7 +297,7 @@ class _ProfileState extends State<Profile> {
                       backgroundImage: AssetImage(
                           'assets/informScreenImages/uygulamayiOyla.png'),
                     ),
-                    trailing: Icon(Icons.arrow_forward_ios),
+                    trailing: const Icon(Icons.arrow_forward_ios),
                   ),
                 ),
               ),
@@ -379,16 +308,17 @@ class _ProfileState extends State<Profile> {
                   child: ListTile(
                       onTap: () {},
                       title: Text(
-                          style: TextStyle(
-                            fontFamily: 'glacial-indifference-bold',
-                            fontSize: textSize / 1.5,
-                          ),
-                          'Uygulamayı Paylas'),
+                        StringConstants.shareApp,
+                        style: TextStyle(
+                          fontFamily: 'glacial-indifference-bold',
+                          fontSize: textSize / 1.5,
+                        ),
+                      ),
                       leading: const CircleAvatar(
                         backgroundImage:
-                            AssetImage('assets/informScreenImages/paylas.png'),
+                            AssetImage(ImagePathConstants.shareImage),
                       ),
-                      trailing: Icon(Icons.arrow_forward_ios)),
+                      trailing: const Icon(Icons.arrow_forward_ios)),
                 ),
               ),
             ],
