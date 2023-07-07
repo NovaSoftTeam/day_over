@@ -1,9 +1,10 @@
+import 'package:day_over/features/profileScreen/edit.dart';
+import 'package:flutter/material.dart';
 import 'package:day_over/product/constants/image_path_constants.dart';
 import 'package:day_over/product/constants/string_constants.dart';
 import 'package:day_over/product/constants/text_fonts_constants.dart';
 import 'package:day_over/product/widgets/custom_app_bar.dart';
 import 'package:day_over/product/widgets/custom_drawer.dart';
-import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -31,20 +32,21 @@ class _ProfileState extends State<Profile> {
     return SafeArea(
       child: Scaffold(
         drawer: const CustomDrawer(),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                CustomAppBar(appBarText: "Profile", textSize: textSize),
-                Card(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomAppBar(appBarText: "Profile", textSize: textSize),
+              Container(
+                child: Card(
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width,
+                    // height: MediaQuery.of(context).size.height / 2.7,
                     child: Column(
                       children: [
                         SizedBox(
                           height: containerHeight / 20,
                         ),
-                        const CircleAvatar(
+                        CircleAvatar(
                           radius: 60,
                           backgroundImage:
                               AssetImage('assets/informScreenImages/rick.png'),
@@ -124,49 +126,189 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 1.0, horizontal: 4.0),
-                  child: Card(
-                    child: ListTile(
-                      onTap: () {},
-                      title: Text(
-                        StringConstants.editProfile,
-                        style: TextStyle(
-                          fontFamily: 'glacial-indifference-bold',
-                          fontSize: textSize / 1.5,
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
+                child: Card(
+                  child: ListTile(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProfileEdit(),
                         ),
-                      ),
-                      leading: const CircleAvatar(
-                        backgroundImage:
-                            AssetImage(ImagePathConstants.editProfileImage),
-                      ),
-                      trailing: const Icon(Icons.arrow_forward_ios),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
-                    child: Text(
-                      StringConstants.settings,
-                      textAlign: TextAlign.start,
+                      );
+                    },
+                    title: Text(
+                      StringConstants.editProfile,
                       style: TextStyle(
-                        fontFamily: 'Poppins-Medium',
-                        fontSize: textSize / 1.15,
+                        fontFamily: 'glacial-indifference-bold',
+                        fontSize: textSize / 1.5,
                       ),
+                    ),
+                    leading: const CircleAvatar(
+                      backgroundImage:
+                          AssetImage(ImagePathConstants.editProfileImage),
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+                  child: Text(
+                    StringConstants.settings,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontFamily: 'Poppins-Medium',
+                      fontSize: textSize / 1.15,
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 1.0, horizontal: 4.0),
-                  child: Card(
-                    child: ListTile(
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
+                child: Card(
+                  child: ListTile(
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              scrollable: true,
+                              content: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Positioned(
+                                          left: -20,
+                                          top: -20,
+                                          child: InkResponse(
+                                            onTap: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: CircleAvatar(
+                                              foregroundColor: Colors.black,
+                                              child: Icon(Icons.close_sharp),
+                                              backgroundColor: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    CircleAvatar(
+                                      backgroundColor: Colors.transparent,
+                                      radius: 40,
+                                      backgroundImage: AssetImage(
+                                          'assets/informScreenImages/DAYOVER.png'),
+                                    ),
+                                    Text(
+                                      style: TextStyle(
+                                        fontFamily: 'glacial-indifference-bold',
+                                        fontSize: textSize,
+                                      ),
+                                      'Hakkımızda',
+                                    ),
+                                    SizedBox(
+                                      height: containerHeight / 20,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 1.0, horizontal: 4.0),
+                                      child: Card(
+                                        child: ListTile(
+                                          onTap: () {},
+                                          title: Text(
+                                            style: TextStyle(
+                                              fontFamily:
+                                                  'glacial-indifference-bold',
+                                              fontSize: textSize / 2,
+                                            ),
+                                            "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: containerHeight / 20,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 1.0, horizontal: 4.0),
+                                      child: Card(
+                                        child: ListTile(
+                                          onTap: () {},
+                                          title: Text(
+                                            style: TextStyle(
+                                              fontFamily:
+                                                  'glacial-indifference-bold',
+                                              fontSize: textSize / 2,
+                                            ),
+                                            "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: containerHeight / 20,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          });
+                    },
+                    title: Text(
+                      StringConstants.aboutApp,
+                      style: TextStyle(
+                        fontFamily: 'glacial-indifference-bold',
+                        fontSize: textSize / 1.5,
+                      ),
+                    ),
+                    leading: const CircleAvatar(
+                      backgroundImage:
+                          AssetImage(ImagePathConstants.aboutImage),
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
+                child: Card(
+                  child: ListTile(
+                    onTap: () {},
+                    title: Text(
+                        style: TextStyle(
+                          fontFamily: 'glacial-indifference-bold',
+                          fontSize: textSize / 1.5,
+                        ),
+                        'Uygulamayı Oyla'),
+                    leading: const CircleAvatar(
+                      backgroundImage: AssetImage(
+                          'assets/informScreenImages/uygulamayiOyla.png'),
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
+                child: Card(
+                  child: ListTile(
                       onTap: () {},
                       title: Text(
-                        StringConstants.aboutApp,
+                        StringConstants.shareApp,
                         style: TextStyle(
                           fontFamily: 'glacial-indifference-bold',
                           fontSize: textSize / 1.5,
@@ -174,55 +316,12 @@ class _ProfileState extends State<Profile> {
                       ),
                       leading: const CircleAvatar(
                         backgroundImage:
-                            AssetImage(ImagePathConstants.aboutImage),
+                            AssetImage(ImagePathConstants.shareImage),
                       ),
-                      trailing: const Icon(Icons.arrow_forward_ios),
-                    ),
-                  ),
+                      trailing: const Icon(Icons.arrow_forward_ios)),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 1.0, horizontal: 4.0),
-                  child: Card(
-                    child: ListTile(
-                      onTap: () {},
-                      title: Text(
-                        StringConstants.voteApp,
-                        style: TextStyle(
-                          fontFamily: 'glacial-indifference-bold',
-                          fontSize: textSize / 1.5,
-                        ),
-                      ),
-                      leading: const CircleAvatar(
-                        backgroundImage:
-                            AssetImage(ImagePathConstants.voteImage),
-                      ),
-                      trailing: const Icon(Icons.arrow_forward_ios),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 1.0, horizontal: 4.0),
-                  child: Card(
-                    child: ListTile(
-                        onTap: () {},
-                        title: Text(
-                          StringConstants.shareApp,
-                          style: TextStyle(
-                            fontFamily: 'glacial-indifference-bold',
-                            fontSize: textSize / 1.5,
-                          ),
-                        ),
-                        leading: const CircleAvatar(
-                          backgroundImage:
-                              AssetImage(ImagePathConstants.shareImage),
-                        ),
-                        trailing: const Icon(Icons.arrow_forward_ios)),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
