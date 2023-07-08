@@ -1,25 +1,61 @@
+import 'package:day_over/features/sign_up/sign_up_view.dart';
+import 'package:day_over/features/sign_up/sign_viev_model.dart';
+import 'package:day_over/features/splash/splash_view_model.dart';
 import 'package:day_over/product/constants/color_constants.dart';
 import 'package:day_over/product/constants/image_path_constants.dart';
+import 'package:day_over/product/constants/string_constants.dart';
 import 'package:day_over/product/widgets/custom_form_field.dart';
+import 'package:day_over/product/widgets/sign_up_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class SignInView extends ConsumerStatefulWidget {
   const SignInView({Key? key}) : super(key: key);
 
-    @override
+  @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SignInViewState();
 }
 
 class _SignInViewState extends ConsumerState<SignInView> {
-  final TextEditingController epostController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  late final GlobalKey<FormState> _key;
+  late final TextEditingController _epostController;
+  late final TextEditingController _passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    _key = GlobalKey<FormState>();
+    _epostController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _epostController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void singInCall() async {
+    final signViewModel = ref.read(signViewProvider.notifier);
+    final state = ref.read(splashProvider.notifier);
+
+    bool isValid = _key.currentState!.validate();
+    if (isValid) {
+      _key.currentState!.save();
+      final user = await signViewModel.signInWithEmail(
+          _epostController.text, _passwordController.text);
+      if (user == null) {
+        state.handleSignOut();
+      } else {
+        state.handleAuthentication();
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    var inputTextSize = MediaQuery.of(context).size.width / 28;
-    var iconSize = MediaQuery.of(context).size.width / 20;
-    var hintTextSize = MediaQuery.of(context).size.width / 25;
     double actionTextSize;
 
     if (MediaQuery.of(context).size.width >
@@ -29,97 +65,124 @@ class _SignInViewState extends ConsumerState<SignInView> {
       actionTextSize = MediaQuery.of(context).size.width / 35;
     }
 
-    var loginButtonTextSize = MediaQuery.of(context).size.height / 40;
+    ViewState viewState = ref.watch(signViewProvider);
+
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Image(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 1.55,
-                image: const AssetImage(ImagePathConstants.signInAppImage),
-                alignment: Alignment.topCenter,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
+      backgroundColor: ColorConstants.white,
+      body: viewState == ViewState.idle
+          ? SingleChildScrollView(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  CustomFormField(
-                    controller: epostController,
-                    labelText: "E-posta",
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  CustomFormField(
-                    controller: passwordController,
-                    labelText: "Şifre",
-                    isObscureText: true,
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
                   SizedBox(
-                    //width: MediaQuery.of(context).size.width / 1.5,
-                    height: MediaQuery.of(context).size.height / 20,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(13, 101, 248, 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                              MediaQuery.of(context).size.height),
-                        ),
-                      ),
-                      child: Text(
-                        "Giriş Yap",
-                        style: TextStyle(fontSize: loginButtonTextSize),
-                      ),
+                    width: MediaQuery.of(context).size.width,
+                    child: Image(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 1.55,
+                      image:
+                          const AssetImage(ImagePathConstants.signInAppImage),
+                      alignment: Alignment.topCenter,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          print("sa");
-                        },
-                        child: Text('Şifremi Unuttum',
-                            style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: ColorConstants.blue,
-                                fontSize: actionTextSize)),
-                      ),
-                      const SizedBox(
-                        width: 50,
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Text(
-                          'Hesap Oluştur',
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              color: ColorConstants.blue,
-                              fontSize: actionTextSize),
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Column(
+                      children: [
+                        const Padding(
+                            padding: EdgeInsets.all(18.0),
+                            child: SignUpTextWidget(
+                              signText: StringConstants.signInText,
+                            )),
+                        Form(
+                            key: _key,
+                            child: Column(
+                              children: [
+                                CustomFormField(
+                                  leadingIcon: const Icon(Icons.email),
+                                  controller: _epostController,
+                                  labelText: "E-posta",
+                                  keyBoardType: TextInputType.emailAddress,
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                CustomFormField(
+                                  leadingIcon: const Icon(Icons.lock),
+                                  controller: _passwordController,
+                                  labelText: "Şifre",
+                                  isObscureText: true,
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                SizedBox(
+                                  height: 40,
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      singInCall();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          ColorConstants.mainBlueColor,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                            MediaQuery.of(context).size.height),
+                                      ),
+                                    ),
+                                    child: const Text(
+                                      StringConstants.signInText,
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                        const SizedBox(
+                          height: 10,
                         ),
-                      ),
-                    ],
-                  )
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: TextButton(
+                                  style: TextButton.styleFrom(
+                                      foregroundColor:
+                                          ColorConstants.mainBlueColor),
+                                  onPressed: () {},
+                                  child: const Text(
+                                      StringConstants.forgotPassword)),
+                            ),
+                            Expanded(
+                              child: TextButton(
+                                  style: TextButton.styleFrom(
+                                      foregroundColor:
+                                          ColorConstants.mainBlueColor),
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) {
+                                        return const SignUpView();
+                                      },
+                                    ));
+                                  },
+                                  child: const Text(
+                                      StringConstants.createAccount)),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                 ],
               ),
+            )
+          : LoadingAnimationWidget.hexagonDots(
+              color: Colors.black,
+              size: 100,
             ),
-          ],
-        ),
-      ),
     );
   }
 }
