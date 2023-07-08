@@ -1,5 +1,7 @@
+import 'package:day_over/features/profileScreen/profile_edit.dart';
 import 'package:day_over/features/sign_in/sign_in_view.dart';
 import 'package:day_over/features/splash/splash_view.dart';
+import 'package:day_over/features/task/task_screen.dart';
 import 'package:day_over/product/initialize/app_start.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SignInView(),
+      home: const ProfileEdit(),
     );
   }
 }

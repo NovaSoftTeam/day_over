@@ -13,9 +13,19 @@ class StringConstants {
   static const String informationFirstText =
       "We build scalable intelligent mobile applications that simplify people's lives.";
   static const String informationSecondPageButtonText = "Next";
+
+  //Profil Ekranı
   static const String voteApp = "Uygulamayı Oyla";
   static const String aboutApp = "Hakkında";
   static const String settings = 'Genel Ayarlar';
   static const String shareApp = "Uygulamayı Paylaş";
   static const String editProfile = "Profili Düzenle";
+  static const String enterName = "Adınızı Giriniz";
+  static const String enterSurname = "Soyadınızı Giriniz";
+  static const String enterAge = "Yasınızı Giriniz";
+  static const String enterHeight = "Boyunuzu Giriniz";
+  static const String enterWeight = "Kilonuzu Giriniz";
+  static const String enterGender = "Cinsiyetinizi Giriniz";
+  static const String editProfileButtontText = "Bilgileri Kaydet";
+  static const String editProfileImageText = 'Profil fotografını değiştir';
 }
