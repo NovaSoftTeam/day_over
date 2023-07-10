@@ -39,8 +39,11 @@ class _AllTaskViewState extends ConsumerState<AllTaskView> {
         child: const Icon(Icons.add),
         onPressed: () {
           var list = ref.watch(allTaskProvider);
-          ref.watch(allTaskProvider.notifier).createTask(ref.watch(userUidProvider), list.first);
-      },),
+          ref
+              .watch(allTaskProvider.notifier)
+              .createTask(ref.watch(userUidProvider), list);
+        },
+      ),
     );
   }
 }

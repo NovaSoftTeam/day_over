@@ -18,10 +18,12 @@ class FakeUserTaskService extends BaseUserTask {
   }
 
   @override
-  Future<void> createTask(String userId, TaskModel task) async {
-    taskList.add(task);
+  Future<void> createTask(String userId, List<TaskModel> tasks) async {
+    for (var task in tasks) {
+      taskList.add(task);
+    }
   }
-  
+
   @override
   Future<List<TaskModel>> getYourTasks(String userId) {
     throw UnimplementedError();

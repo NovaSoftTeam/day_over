@@ -20,16 +20,20 @@ class UserTaskRepo extends BaseUserTask {
   }
 
   @override
-  Future<void> createTask(String userId, TaskModel task) async {
+  Future<List<TaskModel>> getYourTasks(String userId) async {
     if (appMode == AppMode.debug) {
-      await _fakeService.createTask(userId, task);
+      return await _fakeService.getYourTasks(userId);
     } else {
-      await _taskService.createTask(userId, task);
+      return await _taskService.getYourTasks(userId);
     }
   }
-  
+
   @override
-  Future<List<TaskModel>> getYourTasks(String userId) async{
-    return await _taskService.getYourTasks(userId);
+  Future<void> createTask(String userId, List<TaskModel> tasks) async {
+    if (appMode == AppMode.debug) {
+      await _fakeService.createTask(userId, tasks);
+    } else {
+      await _taskService.createTask(userId, tasks);
+    }
   }
 }

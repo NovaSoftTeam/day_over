@@ -29,30 +29,6 @@ class FirebaseTaskService implements BaseUserTask {
     return tasks;
   }
 
-  // List<TaskModel> fromFirebaseForDocumentSnapshot(DocumentSnapshot<Map<String, dynamic>> taskDocument){
-
-  // }
-
-  @override
-  Future<void> createTask(String userId, TaskModel task) async {
-    CollectionReference tasks = firestore.collection("your_tasks");
-
-    try {
-      await tasks.doc(userId).set({
-        'tasks': FieldValue.arrayUnion([
-          {
-            'id': task.taskId,
-            'description': task.description,
-            'credit': task.credit,
-          },
-        ]),
-      }, SetOptions(merge: true));
-      print('Görev oluşturuldu.');
-    } catch (e) {
-      print('Görev oluşturulamadı: $e');
-    }
-  }
-
   @override
   Future<List<TaskModel>> getYourTasks(String userId) async {
     try {
@@ -70,6 +46,27 @@ class FirebaseTaskService implements BaseUserTask {
         );
       }).toList();
       return taskList;
+    } catch (e) {
+      throw FirebaseCustomException(description: "$e");
+    }
+  }
+
+  @override
+  Future<void> createTask(String userId, List<TaskModel> taskList) async {
+    CollectionReference tasks = firestore.collection("your_tasks");
+
+    try {
+      for (var task in taskList) {
+        await tasks.doc(userId).set({
+          'tasks': FieldValue.arrayUnion([
+            {
+              'id': task.taskId,
+              'description': task.description,
+              'credit': task.credit,
+            },
+          ]),
+        }, SetOptions(merge: true));
+      }
     } catch (e) {
       throw FirebaseCustomException(description: "$e");
     }

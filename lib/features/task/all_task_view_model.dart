@@ -27,19 +27,23 @@ class AllTaskNotifier extends StateNotifier<List<TaskModel>>
   void remove(String id) {
     state = state.where((element) => element.taskId != id).toList();
   }
-  
+
   @override
-  Future<void> createTask(String userId, TaskModel task) async{
-    try{
-      await _userRepo.createTask(userId, task);
-    }catch(e){
-      throw FirebaseCustomException(description: "task kaydedilemedi");
+  Future<List<TaskModel>> getYourTasks(String userId) async {
+    try {
+      return await _userRepo.getYourTasks(userId);
+    } catch (e) {
+      throw FirebaseCustomException(description: "$e");
     }
   }
-  
+
   @override
-  Future<List<TaskModel>> getYourTasks(String userId) {
-    return _userRepo.getYourTasks(userId);
+  Future<void> createTask(String userId, List<TaskModel> tasks) async {
+    try {
+      _userRepo.createTask(userId, tasks);
+    } catch (e) {
+      throw FirebaseCustomException(description: "$e");
+    }
   }
 }
 
