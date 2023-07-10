@@ -8,7 +8,7 @@ enum AppMode { debug, release }
 class UserTaskRepo extends BaseUserTask {
   final FakeUserTaskService _fakeService = FakeUserTaskService();
   final FirebaseTaskService _taskService = FirebaseTaskService();
-  AppMode appMode = AppMode.debug;
+  AppMode appMode = AppMode.release;
 
   @override
   Future<List<TaskModel>> getAll() async {
@@ -17,5 +17,19 @@ class UserTaskRepo extends BaseUserTask {
     } else {
       return await _taskService.getAll();
     }
+  }
+
+  @override
+  Future<void> createTask(String userId, TaskModel task) async {
+    if (appMode == AppMode.debug) {
+      await _fakeService.createTask(userId, task);
+    } else {
+      await _taskService.createTask(userId, task);
+    }
+  }
+  
+  @override
+  Future<List<TaskModel>> getYourTasks(String userId) async{
+    return await _taskService.getYourTasks(userId);
   }
 }

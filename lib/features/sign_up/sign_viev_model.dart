@@ -56,3 +56,15 @@ final signViewProvider = StateNotifierProvider<SignViewNotifier, ViewState>((ref
 });
 
 
+// userid'i istediğimiz her yerden okumak için
+class UserUidNotifier extends StateNotifier<String> {
+  UserUidNotifier(): super("");
+  
+  void changeUserId(String userId){
+    state = userId;
+  }
+}
+
+final userUidProvider = StateNotifierProvider<UserUidNotifier,String>((ref) {
+  return UserUidNotifier();
+});
