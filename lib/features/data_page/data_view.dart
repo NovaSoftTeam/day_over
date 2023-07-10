@@ -1,12 +1,11 @@
 import 'package:day_over/product/constants/color_constants.dart';
+import 'package:day_over/product/constants/image_path_constants.dart';
+import 'package:day_over/product/constants/string_constants.dart';
 import 'package:day_over/product/widgets/custom_app_bar.dart';
 import 'package:day_over/product/widgets/custom_drawer.dart';
+import 'package:day_over/product/widgets/custom_graphic.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-//import 'package:syncfusion_flutter_charts/charts.dart';
 
 class DataView extends StatefulWidget {
   const DataView({Key? key}) : super(key: key);
@@ -19,7 +18,7 @@ class _DataViewState extends State<DataView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final _unselectedColor = ColorConstants.white;
-  final _tabs = <Widget>[
+  final _tabs = const <Widget>[
     Tab(
       text: 'Gün',
     ),
@@ -43,46 +42,41 @@ class _DataViewState extends State<DataView>
 
   @override
   Widget build(BuildContext context) {
-    double textSize = 0;
-    double containerWidth = 0;
-    double containerHeight = 0;
-    double BMI = 0;
+    double bMI = 0;
     if (MediaQuery.of(context).size.width >
         MediaQuery.of(context).size.height) {
-      textSize = MediaQuery.of(context).size.height / 17;
-      containerWidth = MediaQuery.of(context).size.width / 2;
-      containerHeight = MediaQuery.of(context).size.height / 1.55;
-      BMI = MediaQuery.of(context).size.height / 9;
+      bMI = MediaQuery.of(context).size.height / 9;
     } else {
-      textSize = MediaQuery.of(context).size.width / 17;
-      containerWidth = MediaQuery.of(context).size.width;
-      containerHeight = MediaQuery.of(context).size.height / 1.55;
-      BMI = MediaQuery.of(context).size.width / 5;
+      bMI = MediaQuery.of(context).size.width / 5;
     }
-    final _gradientColors = [Color(0xFF5DE0E6), Color(0xFF004AAD)];
+    final gradientColors = [
+      ColorConstants.taskListItemFirstColor,
+      ColorConstants.taskListItemLastColor
+    ];
+
     var bmi = 24;
-    var imagePath;
+    String imagePath;
     if (bmi != null) {
       if (bmi <= 18.5) {
-        imagePath = "assets/images/body scale 1.png";
+        imagePath = "assets/images/body_scale_1.png";
       } else if (bmi > 18.5 && bmi <= 24.9) {
-        imagePath = "assets/images/body scale 2.png";
+        imagePath = "assets/images/body_scale_2.png";
       } else if (bmi > 25 && bmi <= 29.9) {
-        imagePath = "assets/images/body scale 3.png";
+        imagePath = "assets/images/body_scale_3.png";
       } else if (bmi > 25 && bmi <= 29.9) {
-        imagePath = "assets/images/body scale 4.png";
+        imagePath = "assets/images/body_scale_4.png";
       } else {
-        imagePath = "assets/images/body scale 5.png";
+        imagePath = "assets/images/body_scale_5.png";
       }
     } else {
-      imagePath = "assets/images/body scale 6.png";
+      imagePath = "assets/images/body_scale_6.png";
     }
     return SafeArea(
       child: Scaffold(
         drawer: const CustomDrawer(),
         body: Column(
           children: [
-            CustomAppBar(appBarText: "Veriler", textSize: textSize / 1.25),
+            const CustomAppBar(appBarText: "Veriler"),
             const SizedBox(
               height: 10,
             ),
@@ -105,7 +99,7 @@ class _DataViewState extends State<DataView>
                       borderRadius: BorderRadius.circular(
                           MediaQuery.of(context).size.height),
                       gradient: (LinearGradient(
-                        colors: _gradientColors,
+                        colors: gradientColors,
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                       ))),
@@ -124,24 +118,24 @@ class _DataViewState extends State<DataView>
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width / 1.2,
               child: Row(
                 children: [
-                  Image(
-                    image: AssetImage("assets/images/icons8-info-50.png"),
+                  SizedBox(
                     width: 20,
                     height: 20,
+                    child: Image.asset(ImagePathConstants.infoIcon),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Container(
                     color: Colors.white,
-                    child: Text("Kazanılan Krediler"),
+                    child: const Text(StringConstants.earnCredit),
                   ),
                 ],
               ),
@@ -152,95 +146,34 @@ class _DataViewState extends State<DataView>
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    Center(
-                        child: Container(
-                          margin: EdgeInsets.only(top: 20),
-                          child: LineChart(LineChartData(
-                              lineBarsData: [
-                                LineChartBarData(
-                                    spots: haftalikVeri
-                                        .map((coin) => FlSpot(coin.x, coin.y))
-                                        .toList(),
-                                    isCurved: true,
-                                    color: Colors.blue),
-                              ],
-                              borderData: FlBorderData(
-                                  border: const Border(
-                                      bottom: BorderSide(), left: BorderSide())),
-                              gridData: FlGridData(show: false),
-                              titlesData: FlTitlesData(
-                                bottomTitles:
-                                AxisTitles(sideTitles: _bottomTitlesDay),
-                              ))),
-                        )),
-
-                    // second tab bar view widget
-                    Center(
-                        child: Container(
-                          margin: EdgeInsets.only(top: 20),
-                          child: LineChart(LineChartData(
-                              lineBarsData: [
-                                LineChartBarData(
-                                    spots: aylikVeri
-                                        .map((coin) => FlSpot(coin.x, coin.y))
-                                        .toList(),
-                                    isCurved: true,
-                                    //dotData: FlDotData(show: false),
-                                    color: Colors.blue),
-                              ],
-                              borderData: FlBorderData(
-                                  border: const Border(
-                                      bottom: BorderSide(), left: BorderSide())),
-                              gridData: FlGridData(show: false),
-                              titlesData: FlTitlesData(
-                                bottomTitles:
-                                AxisTitles(sideTitles: _bottomTitlesMounth),
-                              ))),
-                        )),
-                    Center(
-                        child: Container(
-                          margin: EdgeInsets.only(top: 20),
-                          child: LineChart(LineChartData(
-                              lineBarsData: [
-                                LineChartBarData(
-                                    spots: yillikVeri
-                                        .map((coin) => FlSpot(coin.x, coin.y))
-                                        .toList(),
-                                    isCurved: true,
-                                    //dotData: FlDotData(show: false),
-                                    color: Colors.blue),
-                              ],
-                              borderData: FlBorderData(
-                                  border: const Border(
-                                      bottom: BorderSide(), left: BorderSide())),
-                              gridData: FlGridData(show: false),
-                              titlesData: FlTitlesData(
-                                bottomTitles:
-                                AxisTitles(sideTitles: _bottomTitlesYear),
-                              ))),
-                        )),
+                    CustomGraphic(
+                        datas: haftalikVeri, bottomTitle: _bottomTitlesDay),
+                    CustomGraphic(
+                        datas: aylikVeri, bottomTitle: _bottomTitlesMounth),
+                    CustomGraphic(
+                        datas: yillikVeri, bottomTitle: _bottomTitlesYear)
                   ],
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width / 1.2,
               child: Row(
                 children: [
-                  Image(
-                    image: AssetImage("assets/images/icons8-info-50.png"),
+                  SizedBox(
                     width: 20,
                     height: 20,
+                    child: Image.asset(ImagePathConstants.infoIcon),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Container(
                     color: Colors.white,
-                    child: Text("Vücut Kitle İndeksi"),
+                    child: const Text(StringConstants.bodyMassIndex),
                   ),
                 ],
               ),
@@ -250,14 +183,11 @@ class _DataViewState extends State<DataView>
               children: [
                 Image(
                   image: AssetImage(imagePath),
-                  width: BMI,
-                  //height: MediaQuery.of(context).size.width / 1.5,
+                  width: bMI,
                 ),
                 Image(
-                  image:
-                  AssetImage("assets/images/day over kilo çizelgesi.png"),
-                  width: BMI,
-                  //height: 20,
+                  image: const AssetImage(ImagePathConstants.weightScale),
+                  width: bMI,
                 ),
               ],
             )
@@ -269,59 +199,62 @@ class _DataViewState extends State<DataView>
 }
 
 SideTitles get _bottomTitlesMounth => SideTitles(
-  showTitles: true,
-  getTitlesWidget: (value, meta) {
-    String text = '';
-    switch (value.toInt()) {
-      case 1:
-        text = 'Jan';
-        break;
-      case 3:
-        text = 'Mar';
-        break;
-      case 5:
-        text = 'May';
-        break;
-      case 7:
-        text = 'Jul';
-        break;
-      case 9:
-        text = 'Sep';
-        break;
-      case 11:
-        text = 'Nov';
-        break;
-    }
+      interval: 1,
+      showTitles: true,
+      getTitlesWidget: (value, meta) {
+        String text = '';
+        switch (value.toInt()) {
+          case 1:
+            text = 'Jan';
+            break;
+          case 3:
+            text = 'Mar';
+            break;
+          case 5:
+            text = 'May';
+            break;
+          case 7:
+            text = 'Jul';
+            break;
+          case 9:
+            text = 'Sep';
+            break;
+          case 11:
+            text = 'Nov';
+            break;
+        }
 
-    return Text(text);
-  },
-);
+        return Text(text);
+      },
+    );
 
 SideTitles get _bottomTitlesDay => SideTitles(
-  showTitles: true,
-  getTitlesWidget: (value, meta) {
-    String text = '';
+      interval: 1,
+      showTitles: true,
+      getTitlesWidget: (value, meta) {
+        String text = '';
 
-    if (value.toInt() == 1) {
-      text = 'Mon';
-    } else if (value.toInt() == 2) {
-      text = 'Tue';
-    } else if (value.toInt() == 3) {
-      text = 'Wed';
-    } else if (value.toInt() == 4) {
-      text = 'Thu';
-    } else if (value.toInt() == 5) {
-      text = 'Fri';
-    } else if (value.toInt() == 6) {
-      text = 'Sat';
-    } else {
-      text = 'Sun';
-    }
-    return Text(text);
-  },
-);
+        if (value.toInt() == 1) {
+          text = 'Mon';
+        } else if (value.toInt() == 2) {
+          text = 'Tue';
+        } else if (value.toInt() == 3) {
+          text = 'Wed';
+        } else if (value.toInt() == 4) {
+          text = 'Thu';
+        } else if (value.toInt() == 5) {
+          text = 'Fri';
+        } else if (value.toInt() == 6) {
+          text = 'Sat';
+        } else {
+          text = 'Sun';
+        }
+        return Text(text);
+      },
+    );
 
 SideTitles get _bottomTitlesYear => SideTitles(
+    interval: 1,
     showTitles: true,
     getTitlesWidget: (value, meta) {
       String text = '';
@@ -340,14 +273,14 @@ SideTitles get _bottomTitlesYear => SideTitles(
       return Text(text);
     });
 
-List<FlSpot> yillikVeri = [
+List<FlSpot> yillikVeri = const [
   FlSpot(2023, 2400),
   FlSpot(2022, 1850),
   FlSpot(2021, 1950),
   FlSpot(2020, 3200),
   FlSpot(2019, 1600),
 ];
-List<FlSpot> haftalikVeri = [
+List<FlSpot> haftalikVeri = const [
   FlSpot(1, 100),
   FlSpot(2, 250),
   FlSpot(3, 200),
@@ -356,7 +289,7 @@ List<FlSpot> haftalikVeri = [
   FlSpot(6, 300),
   FlSpot(7, 200),
 ];
-List<FlSpot> aylikVeri = [
+List<FlSpot> aylikVeri = const [
   FlSpot(1, 100),
   FlSpot(2, 250),
   FlSpot(3, 200),

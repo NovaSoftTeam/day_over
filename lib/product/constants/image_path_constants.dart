@@ -15,4 +15,8 @@ class ImagePathConstants {
   static const String voteImage = "assets/iconImages/uygulamayiOyla.png";
   static const String editProfileImage = "assets/iconImages/profiliDuzenle.png";
   static const String signInImage = "assets/images/wc_dayover.png";
+
+  //Data Ekranı
+  static const String infoIcon = "assets/images/info.png";
+  static const String weightScale = "assets/images/day_over_kilo_cizelgesi.png";
 }

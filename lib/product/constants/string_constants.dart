@@ -30,4 +30,8 @@ class StringConstants {
   static const String enterGender = "Cinsiyetinizi Giriniz";
   static const String editProfileButtontText = "Bilgileri Kaydet";
   static const String editProfileImageText = 'Profil fotografını değiştir';
+
+  //Data Ekranı
+  static const String earnCredit = "Kazanılan Krediler";
+  static const String bodyMassIndex = "Vücut Kitle İndeksi";
 }

@@ -1,3 +1,4 @@
+import 'package:day_over/features/data_page/data_view.dart';
 import 'package:day_over/features/task/all_task_view.dart';
 import 'package:day_over/features/task/task_screen.dart';
 import 'package:day_over/product/initialize/app_start.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const TaskView(),
+      home: const DataView(),
     );
   }
 }

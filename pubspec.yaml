@@ -31,7 +31,7 @@ dependencies:
 
   # Product packages
   animated_text_kit: ^4.2.2
-  fl_chart: ^0.63.0
+  fl_chart:
 
 dev_dependencies:
   flutter_test:

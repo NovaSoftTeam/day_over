@@ -8,7 +8,7 @@ enum AppMode { debug, release }
 class UserTaskRepo extends BaseUserTask {
   final FakeUserTaskService _fakeService = FakeUserTaskService();
   final FirebaseTaskService _taskService = FirebaseTaskService();
-  AppMode appMode = AppMode.release;
+  AppMode appMode = AppMode.debug;
 
   @override
   Future<List<TaskModel>> getAll() async {
