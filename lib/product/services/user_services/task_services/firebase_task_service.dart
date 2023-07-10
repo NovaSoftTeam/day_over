@@ -10,13 +10,13 @@ class FirebaseTaskService implements BaseUserTask {
   Future<List<TaskModel>> getAll() async {
     try {
       final taskDocuments = await firestore.collection("tasks").get();
-      return fromFirebase(taskDocuments);
+      return fromFirebaseForQuerySnapshot(taskDocuments);
     } catch (e) {
       throw FirebaseCustomException(description: "$e");
     }
   }
 
-  List<TaskModel> fromFirebase(
+  List<TaskModel> fromFirebaseForQuerySnapshot(
       QuerySnapshot<Map<String, dynamic>> taskCollection) {
     List<TaskModel> tasks = [];
     for (var element in taskCollection.docs) {
@@ -27,5 +27,51 @@ class FirebaseTaskService implements BaseUserTask {
           credit: task["credit"]));
     }
     return tasks;
+  }
+
+  // List<TaskModel> fromFirebaseForDocumentSnapshot(DocumentSnapshot<Map<String, dynamic>> taskDocument){
+
+  // }
+
+  @override
+  Future<void> createTask(String userId, TaskModel task) async {
+    CollectionReference tasks = firestore.collection("your_tasks");
+
+    try {
+      await tasks.doc(userId).set({
+        'tasks': FieldValue.arrayUnion([
+          {
+            'id': task.taskId,
+            'description': task.description,
+            'credit': task.credit,
+          },
+        ]),
+      }, SetOptions(merge: true));
+      print('Görev oluşturuldu.');
+    } catch (e) {
+      print('Görev oluşturulamadı: $e');
+    }
+  }
+
+  @override
+  Future<List<TaskModel>> getYourTasks(String userId) async {
+    try {
+      DocumentSnapshot yourTasksDocSnaphost =
+          await firestore.collection("your_tasks").doc(userId).get();
+
+      final dynamic data = yourTasksDocSnaphost.data();
+      final List<dynamic> taskDataList = data['tasks'] ?? [];
+
+      List<TaskModel> taskList = taskDataList.map((taskData) {
+        return TaskModel(
+          taskId: taskData['id'],
+          description: taskData['description'],
+          credit: taskData['credit'],
+        );
+      }).toList();
+      return taskList;
+    } catch (e) {
+      throw FirebaseCustomException(description: "$e");
+    }
   }
 }

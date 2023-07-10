@@ -49,6 +49,7 @@ class _SignInViewState extends ConsumerState<SignInView> {
       if (user == null) {
         state.handleSignOut();
       } else {
+        ref.read(userUidProvider.notifier).changeUserId(user.userId);
         state.handleAuthentication();
       }
     }
