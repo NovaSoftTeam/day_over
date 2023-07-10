@@ -294,8 +294,8 @@ class _ProfileState extends State<Profile> {
                         ),
                         'Uygulamayı Oyla'),
                     leading: const CircleAvatar(
-                      backgroundImage: AssetImage(
-                          'assets/informScreenImages/uygulamayiOyla.png'),
+                      backgroundImage:
+                          AssetImage('assets/iconImages/uygulamayiOyla.png'),
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
                   ),

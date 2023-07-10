@@ -43,6 +43,13 @@ class _ProfileEditState extends ConsumerState<ProfileEdit> {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> list = <String>[
+      'Kadın',
+      'Erkek',
+      'Diğer',
+      'Belirtmek İstemiyorum'
+    ];
+    String dropdownValue = 'Belirtmek İstemiyorum';
     double textSize = 0;
     double containerHeight = 0;
     if (MediaQuery.of(context).size.width >
@@ -138,9 +145,26 @@ class _ProfileEditState extends ConsumerState<ProfileEdit> {
                               const SizedBox(
                                 height: 15,
                               ),
-                              CustomFormField(
-                                controller: boyController,
-                                labelText: StringConstants.enterGender,
+                              DropdownButtonFormField(
+                                value: dropdownValue,
+                                decoration: InputDecoration(
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.white,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                ),
+                                items: list.map((gender) {
+                                  return DropdownMenuItem(
+                                    value: gender,
+                                    child: Text('${gender}'),
+                                  );
+                                }).toList(),
+                                onChanged: (val) => setState(
+                                    () => dropdownValue = val.toString()),
                               ),
                               const SizedBox(
                                 height: 25,
