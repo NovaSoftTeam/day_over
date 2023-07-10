@@ -1,9 +1,11 @@
-import 'package:day_over/features/sign_up/sign_up_viev_model.dart';
+import 'package:day_over/features/sign_in/sign_in_view.dart';
+import 'package:day_over/features/sign_up/sign_viev_model.dart';
 import 'package:day_over/features/splash/splash_view_model.dart';
 import 'package:day_over/product/constants/color_constants.dart';
 import 'package:day_over/product/constants/string_constants.dart';
 import 'package:day_over/product/widgets/custom_form_field.dart';
 import 'package:day_over/product/widgets/sign_up_app_widget.dart';
+import 'package:day_over/product/widgets/sign_up_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -62,24 +64,15 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
     final viewState = ref.watch(signViewProvider);
 
     return Scaffold(
-      //backgroundColor: Colors.grey[300],
       body: viewState == ViewState.idle
           ? SingleChildScrollView(
               child: Column(
                 children: [
                   const SignUpAppBarWidget(),
-                  Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        Text(
-                          StringConstants.signUpText,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-                      ],
-                    ),
+                  const Padding(
+                    padding: EdgeInsets.all(18.0),
+                    child:
+                        SignUpTextWidget(signText: StringConstants.signUpText),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 18.0, left: 18.0),
@@ -88,11 +81,11 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            CustomFormField(
+                            /*CustomFormField(
                               controller: _usernameController,
                               labelText: "Username",
                               leadingIcon: const Icon(Icons.person),
-                            ),
+                            ),*/
                             const SizedBox(
                               height: 15,
                             ),
@@ -110,7 +103,6 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                               labelText: "Password",
                               leadingIcon: const Icon(Icons.lock),
                               isObscureText: true,
-
                             ),
                             const SizedBox(
                               height: 15,
@@ -126,7 +118,14 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                                     style: TextButton.styleFrom(
                                         foregroundColor:
                                             ColorConstants.mainBlueColor),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                        builder: (context) {
+                                          return const SignInView();
+                                        },
+                                      ));
+                                    },
                                     child: const Text(
                                         StringConstants.haveAccountText))
                               ],

@@ -21,6 +21,8 @@ dependencies:
   loading_animation_widget: ^1.2.0+4
   google_nav_bar: ^5.0.6
   google_fonts: 
+  uuid: ^3.0.7
+
 
   # Firabase packages
   cloud_firestore: ^4.8.1
