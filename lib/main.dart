@@ -1,6 +1,4 @@
-import 'package:day_over/features/data_page/data_view.dart';
-import 'package:day_over/features/task/all_task_view.dart';
-import 'package:day_over/features/task/task_screen.dart';
+import 'package:day_over/features/splash/splash_view.dart';
 import 'package:day_over/product/initialize/app_start.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const DataView(),
+      home: const SplashView(),
     );
   }
 }
