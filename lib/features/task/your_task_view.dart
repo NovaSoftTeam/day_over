@@ -1,5 +1,7 @@
 import 'package:day_over/features/sign_up/sign_viev_model.dart';
 import 'package:day_over/features/task/all_task_view_model.dart';
+import 'package:day_over/product/constants/color_constants.dart';
+import 'package:day_over/product/widgets/custom_circular_indicator.dart';
 import 'package:day_over/product/widgets/task_list_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,12 +27,12 @@ class _YourTaskViewState extends ConsumerState<YourTaskView> {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TaskListItem(task: snapshot.data![index]),
+                child: TaskListItem(task: snapshot.data![index],backgroundColor: ColorConstants.taskListItemLastColor),
               );
             },
           );
         } else {
-          return const CircularProgressIndicator();
+          return const CustomCircularIndicator();
         }
       },
     );

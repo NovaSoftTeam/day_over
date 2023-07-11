@@ -20,14 +20,6 @@ class AllTaskNotifier extends StateNotifier<List<TaskModel>>
     }
   }
 
-  void add(TaskModel task) {
-    state = [...state, task];
-  }
-
-  void remove(String id) {
-    state = state.where((element) => element.taskId != id).toList();
-  }
-
   @override
   Future<List<TaskModel>> getYourTasks(String userId) async {
     try {
@@ -44,6 +36,41 @@ class AllTaskNotifier extends StateNotifier<List<TaskModel>>
     } catch (e) {
       throw FirebaseCustomException(description: "$e");
     }
+  }
+
+  Future<List<TaskModel>> filteredList(String userId) async {
+    List<TaskModel> allTasks = await getAll();
+    List<TaskModel> yourTasks = await getYourTasks(userId);
+
+    List<TaskModel> filteredList = [];
+
+    for (var item in allTasks) {
+      bool control = true;
+      for (var item2 in yourTasks) {
+        if (item.taskId == item2.taskId) {
+          control = false;
+        }
+      }
+      if (control) {
+        filteredList.add(item);
+      }
+      control = true;
+    }
+    return filteredList;
+  }
+
+  //state operations
+
+  void add(TaskModel task) {
+    state = [...state, task];
+  }
+
+  void remove(String id) {
+    state = state.where((element) => element.taskId != id).toList();
+  }
+
+  void deleteAll(){
+    state = [];
   }
 }
 

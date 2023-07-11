@@ -1,4 +1,3 @@
-import 'package:day_over/features/profileScreen/profile.dart';
 import 'package:day_over/features/splash/splash_view.dart';
 import 'package:day_over/product/initialize/app_start.dart';
 import 'package:flutter/material.dart';
