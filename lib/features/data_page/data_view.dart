@@ -56,21 +56,18 @@ class _DataViewState extends State<DataView>
 
     var bmi = 24;
     String imagePath;
-    if (bmi != null) {
-      if (bmi <= 18.5) {
-        imagePath = "assets/images/body_scale_1.png";
-      } else if (bmi > 18.5 && bmi <= 24.9) {
-        imagePath = "assets/images/body_scale_2.png";
-      } else if (bmi > 25 && bmi <= 29.9) {
-        imagePath = "assets/images/body_scale_3.png";
-      } else if (bmi > 25 && bmi <= 29.9) {
-        imagePath = "assets/images/body_scale_4.png";
-      } else {
-        imagePath = "assets/images/body_scale_5.png";
-      }
+    if (bmi <= 18.5) {
+      imagePath = "assets/images/body_scale_1.png";
+    } else if (bmi > 18.5 && bmi <= 24.9) {
+      imagePath = "assets/images/body_scale_2.png";
+    } else if (bmi > 25 && bmi <= 29.9) {
+      imagePath = "assets/images/body_scale_3.png";
+    } else if (bmi > 25 && bmi <= 29.9) {
+      imagePath = "assets/images/body_scale_4.png";
     } else {
-      imagePath = "assets/images/body_scale_6.png";
+      imagePath = "assets/images/body_scale_5.png";
     }
+
     return SafeArea(
       child: Scaffold(
         drawer: const CustomDrawer(),

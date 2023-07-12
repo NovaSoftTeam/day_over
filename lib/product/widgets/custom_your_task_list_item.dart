@@ -30,7 +30,7 @@ class _CustomYourTaskListItem extends ConsumerState<CustomYourTaskListItem> {
           color: widget.backgroundColor,
           borderRadius: const BorderRadius.all(Radius.circular(25))),
       child: ListTile(
-        leading: Container(child: Image.asset(ImagePathConstants.coinImage)),
+        leading: Image.asset(ImagePathConstants.coinImage),
         trailing: IconButton(
             onPressed: () {
               ref

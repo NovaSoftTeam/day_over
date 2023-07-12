@@ -147,7 +147,7 @@ class _ProfileEditState extends ConsumerState<ProfileEdit> {
                               ),
                               DropdownButtonFormField(
                                 value: dropdownValue,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   fillColor: Colors.white,
                                   filled: true,
                                   enabledBorder: OutlineInputBorder(
@@ -160,7 +160,7 @@ class _ProfileEditState extends ConsumerState<ProfileEdit> {
                                 items: list.map((gender) {
                                   return DropdownMenuItem(
                                     value: gender,
-                                    child: Text('${gender}'),
+                                    child: Text(gender),
                                   );
                                 }).toList(),
                                 onChanged: (val) => setState(

@@ -17,16 +17,13 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     double textSize = 0;
-    double containerWidth = 0;
     double containerHeight = 0;
     if (MediaQuery.of(context).size.width >
         MediaQuery.of(context).size.height) {
       textSize = MediaQuery.of(context).size.height / 17;
-      containerWidth = MediaQuery.of(context).size.width / 2;
       containerHeight = MediaQuery.of(context).size.height / 1.55;
     } else {
       textSize = MediaQuery.of(context).size.width / 17;
-      containerWidth = MediaQuery.of(context).size.width;
       containerHeight = MediaQuery.of(context).size.height / 1.55;
     }
     return SafeArea(
@@ -35,95 +32,95 @@ class _ProfileState extends State<Profile> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const CustomAppBar(appBarText: "Profile"),
-              Container(
-                child: Card(
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    // height: MediaQuery.of(context).size.height / 2.7,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: containerHeight / 20,
+              const CustomAppBar(appBarText: StringConstants.profil),
+              Card(
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  // height: MediaQuery.of(context).size.height / 2.7,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: containerHeight / 20,
+                      ),
+                      const CircleAvatar(
+                        radius: 60,
+                        backgroundImage:
+                            AssetImage('assets/informScreenImages/rick.png'),
+                      ),
+                      Text(
+                        style: TextStyle(
+                          fontFamily:
+                              TextFontsConstants.glacialIndifferenceBold,
+                          fontSize: textSize,
                         ),
-                        CircleAvatar(
-                          radius: 60,
-                          backgroundImage:
-                              AssetImage('assets/informScreenImages/rick.png'),
+                        'Rick Sanchez',
+                      ),
+                      Text(
+                        style: TextStyle(
+                          fontFamily:
+                              TextFontsConstants.glacialIndifferenceRegular,
+                          fontSize: textSize / 1.5,
                         ),
-                        Text(
-                          style: TextStyle(
-                            fontFamily: 'glacial-indifference-bold',
-                            fontSize: textSize,
+                        'PickleRickkkk@gmail.com',
+                      ),
+                      SizedBox(
+                        height: containerHeight / 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                            children: [
+                              Text(
+                                style: TextStyle(
+                                  fontFamily: TextFontsConstants
+                                      .glacialIndifferenceRegular,
+                                  fontSize: textSize / 1.5,
+                                ),
+                                '${StringConstants.age}: 70',
+                              ),
+                              SizedBox(
+                                height: containerHeight / 40,
+                              ),
+                              Text(
+                                style: TextStyle(
+                                  fontFamily: TextFontsConstants
+                                      .glacialIndifferenceRegular,
+                                  fontSize: textSize / 1.5,
+                                ),
+                                '${StringConstants.height}: 196',
+                              ),
+                            ],
                           ),
-                          'Rick Sanchez',
-                        ),
-                        Text(
-                          style: TextStyle(
-                            fontFamily: 'GlacialIndifference-Regular',
-                            fontSize: textSize / 1.5,
+                          Column(
+                            children: [
+                              Text(
+                                style: TextStyle(
+                                  fontFamily: TextFontsConstants
+                                      .glacialIndifferenceRegular,
+                                  fontSize: textSize / 1.5,
+                                ),
+                                '${StringConstants.weight}: 86',
+                              ),
+                              SizedBox(
+                                height: containerHeight / 40,
+                              ),
+                              Text(
+                                style: TextStyle(
+                                  fontFamily: TextFontsConstants
+                                      .glacialIndifferenceRegular,
+                                  fontSize: textSize / 1.5,
+                                ),
+                                '${StringConstants.gender}: erkek',
+                              ),
+                            ],
                           ),
-                          'PickleRickkkk@gmail.com',
-                        ),
-                        SizedBox(
-                          height: containerHeight / 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  style: TextStyle(
-                                    fontFamily: TextFontsConstants
-                                        .glacialIndifferenceRegular,
-                                    fontSize: textSize / 1.5,
-                                  ),
-                                  'age: 70',
-                                ),
-                                SizedBox(
-                                  height: containerHeight / 40,
-                                ),
-                                Text(
-                                  style: TextStyle(
-                                    fontFamily: TextFontsConstants
-                                        .glacialIndifferenceRegular,
-                                    fontSize: textSize / 1.5,
-                                  ),
-                                  'boy: 196',
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  style: TextStyle(
-                                    fontFamily: TextFontsConstants
-                                        .glacialIndifferenceRegular,
-                                    fontSize: textSize / 1.5,
-                                  ),
-                                  'kilo: 86',
-                                ),
-                                SizedBox(
-                                  height: containerHeight / 40,
-                                ),
-                                Text(
-                                  style: TextStyle(
-                                    fontFamily: TextFontsConstants
-                                        .glacialIndifferenceRegular,
-                                    fontSize: textSize / 1.5,
-                                  ),
-                                  'cinsiyet: erkek',
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: containerHeight / 20,
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: containerHeight / 20,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -136,14 +133,14 @@ class _ProfileState extends State<Profile> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ProfileEdit(),
+                          builder: (context) => const ProfileEdit(),
                         ),
                       );
                     },
                     title: Text(
                       StringConstants.editProfile,
                       style: TextStyle(
-                        fontFamily: 'glacial-indifference-bold',
+                        fontFamily: TextFontsConstants.glacialIndifferenceBold,
                         fontSize: textSize / 1.5,
                       ),
                     ),
@@ -163,7 +160,7 @@ class _ProfileState extends State<Profile> {
                     StringConstants.settings,
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                      fontFamily: 'Poppins-Medium',
+                      fontFamily: TextFontsConstants.poppinsMedium,
                       fontSize: textSize / 1.15,
                     ),
                   ),
@@ -195,27 +192,28 @@ class _ProfileState extends State<Profile> {
                                             onTap: () {
                                               Navigator.of(context).pop();
                                             },
-                                            child: CircleAvatar(
+                                            child: const CircleAvatar(
                                               foregroundColor: Colors.black,
-                                              child: Icon(Icons.close_sharp),
                                               backgroundColor: Colors.white,
+                                              child: Icon(Icons.close_sharp),
                                             ),
                                           ),
                                         ),
                                       ],
                                     ),
-                                    CircleAvatar(
+                                    const CircleAvatar(
                                       backgroundColor: Colors.transparent,
                                       radius: 40,
                                       backgroundImage: AssetImage(
                                           'assets/informScreenImages/DAYOVER.png'),
                                     ),
                                     Text(
+                                      StringConstants.aboutUs,
                                       style: TextStyle(
-                                        fontFamily: 'glacial-indifference-bold',
+                                        fontFamily: TextFontsConstants
+                                            .glacialIndifferenceBold,
                                         fontSize: textSize,
                                       ),
-                                      'Hakkımızda',
                                     ),
                                     SizedBox(
                                       height: containerHeight / 20,
@@ -228,8 +226,8 @@ class _ProfileState extends State<Profile> {
                                           onTap: () {},
                                           title: Text(
                                             style: TextStyle(
-                                              fontFamily:
-                                                  'glacial-indifference-bold',
+                                              fontFamily: TextFontsConstants
+                                                  .glacialIndifferenceBold,
                                               fontSize: textSize / 2,
                                             ),
                                             "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
@@ -248,8 +246,8 @@ class _ProfileState extends State<Profile> {
                                           onTap: () {},
                                           title: Text(
                                             style: TextStyle(
-                                              fontFamily:
-                                                  'glacial-indifference-bold',
+                                              fontFamily: TextFontsConstants
+                                                  .glacialIndifferenceBold,
                                               fontSize: textSize / 2,
                                             ),
                                             "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
@@ -269,7 +267,7 @@ class _ProfileState extends State<Profile> {
                     title: Text(
                       StringConstants.aboutApp,
                       style: TextStyle(
-                        fontFamily: 'glacial-indifference-bold',
+                        fontFamily: TextFontsConstants.glacialIndifferenceBold,
                         fontSize: textSize / 1.5,
                       ),
                     ),
@@ -288,11 +286,12 @@ class _ProfileState extends State<Profile> {
                   child: ListTile(
                     onTap: () {},
                     title: Text(
-                        style: TextStyle(
-                          fontFamily: 'glacial-indifference-bold',
-                          fontSize: textSize / 1.5,
-                        ),
-                        'Uygulamayı Oyla'),
+                      StringConstants.voteApp,
+                      style: TextStyle(
+                        fontFamily: TextFontsConstants.glacialIndifferenceBold,
+                        fontSize: textSize / 1.5,
+                      ),
+                    ),
                     leading: const CircleAvatar(
                       backgroundImage:
                           AssetImage('assets/iconImages/uygulamayiOyla.png'),
@@ -310,7 +309,8 @@ class _ProfileState extends State<Profile> {
                       title: Text(
                         StringConstants.shareApp,
                         style: TextStyle(
-                          fontFamily: 'glacial-indifference-bold',
+                          fontFamily:
+                              TextFontsConstants.glacialIndifferenceBold,
                           fontSize: textSize / 1.5,
                         ),
                       ),

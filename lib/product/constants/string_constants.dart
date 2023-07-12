@@ -17,8 +17,10 @@ class StringConstants {
   static const String informationSecondPageButtonText = "Next";
 
   //Profil Ekranı
+  static const String profil = "Profil";
   static const String voteApp = "Uygulamayı Oyla";
   static const String aboutApp = "Hakkında";
+  static const aboutUs = "Hakkımızda";
   static const String settings = 'Genel Ayarlar';
   static const String shareApp = "Uygulamayı Paylaş";
   static const String editProfile = "Profili Düzenle";
@@ -30,6 +32,10 @@ class StringConstants {
   static const String enterGender = "Cinsiyetinizi Giriniz";
   static const String editProfileButtontText = "Bilgileri Kaydet";
   static const String editProfileImageText = 'Profil fotografını değiştir';
+  static const String gender = "Cinsiyet";
+  static const String weight = "Kilo";
+  static const String height = "Boy";
+  static const String age = "Yaş";
 
   //Data Ekranı
   static const String earnCredit = "Kazanılan Krediler";

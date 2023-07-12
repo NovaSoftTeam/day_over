@@ -20,7 +20,7 @@ class _WrapperState extends State<Wrapper> {
       body: PageView(
         controller: controller,
         scrollDirection: Axis.horizontal,
-        children: [
+        children: const [
           WelcomeOne(),
           WelcomeTwo(),
         ],

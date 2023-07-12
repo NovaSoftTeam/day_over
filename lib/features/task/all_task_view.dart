@@ -1,6 +1,5 @@
 import 'package:day_over/features/sign_up/sign_viev_model.dart';
 import 'package:day_over/features/task/all_task_view_model.dart';
-import 'package:day_over/product/constants/color_constants.dart';
 import 'package:day_over/product/widgets/custom_circular_indicator.dart';
 import 'package:day_over/product/widgets/task_list_item_widget.dart';
 import 'package:flutter/material.dart';

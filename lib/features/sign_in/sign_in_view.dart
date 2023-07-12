@@ -57,15 +57,6 @@ class _SignInViewState extends ConsumerState<SignInView> {
 
   @override
   Widget build(BuildContext context) {
-    double actionTextSize;
-
-    if (MediaQuery.of(context).size.width >
-        MediaQuery.of(context).size.height) {
-      actionTextSize = MediaQuery.of(context).size.height / 45;
-    } else {
-      actionTextSize = MediaQuery.of(context).size.width / 35;
-    }
-
     ViewState viewState = ref.watch(signViewProvider);
 
     return Scaffold(
