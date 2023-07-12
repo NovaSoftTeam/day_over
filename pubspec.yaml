@@ -32,6 +32,7 @@ dependencies:
   # Product packages
   animated_text_kit: ^4.2.2
   fl_chart:
+  awesome_dialog: ^2.2.1
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,4 @@
+import 'package:day_over/features/marketScreen/market.dart';
 import 'package:day_over/features/profileScreen/profile.dart';
 import 'package:day_over/features/splash/splash_view.dart';
 import 'package:day_over/product/initialize/app_start.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Profile(),
+      home: const Market(),
     );
   }
 }
