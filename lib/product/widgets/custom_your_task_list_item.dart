@@ -30,18 +30,7 @@ class _CustomYourTaskListItem extends ConsumerState<CustomYourTaskListItem> {
           color: widget.backgroundColor,
           borderRadius: const BorderRadius.all(Radius.circular(25))),
       child: ListTile(
-        leading: Checkbox(
-          fillColor: MaterialStateProperty.resolveWith<Color?>(
-            (Set<MaterialState> states) {
-              if (states.contains(MaterialState.selected)) {
-                return Colors.black;
-              }
-              return Colors.white; // Seçildiğinde arka plan rengi
-            },
-          ),
-          value: isSelected,
-          onChanged: (value) {},
-        ),
+        leading: Container(child: Image.asset(ImagePathConstants.coinImage)),
         trailing: IconButton(
             onPressed: () {
               ref

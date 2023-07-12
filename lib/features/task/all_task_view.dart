@@ -17,35 +17,41 @@ class _AllTaskViewState extends ConsumerState<AllTaskView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        future: ref
-            .watch(allTaskProvider.notifier)
-            .filteredList(ref.watch(userUidProvider)),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TaskListItem(
-                      task: snapshot.data![index],
-                      backgroundColor: ColorConstants.taskListItemFirstColor),
-                );
+      body: ref.watch(allTaskProvider) == AllTaskViewState.idle
+          ? FutureBuilder(
+              future: ref
+                  .watch(allTaskProvider.notifier)
+                  .filteredList(ref.watch(userUidProvider)),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TaskListItem(
+                            task: snapshot.data![index],
+                            // backgroundColor:
+                            //     ColorConstants.taskListItemFirstColor),
+                      ));
+                    },
+                  );
+                } else {
+                  return const CustomCircularIndicator();
+                }
               },
-            );
-          } else {
-            return const CustomCircularIndicator();
-          }
-        },
-      ),
+            )
+          : const CustomCircularIndicator(),
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.check),
-          onPressed: () {
-            var selectedTaskList = ref.watch(allTaskProvider);
+          onPressed: () async{
+            var selectedTaskList = ref.watch(selectItemProvider);
             ref
                 .read(allTaskProvider.notifier)
                 .createTask(ref.watch(userUidProvider), selectedTaskList);
+            
+            ref.read(selectItemProvider.notifier).deleteAll();
+            //ref.read(selectItemProvider.notifier).createTask(ref.watch(userUidProvider), selectedTaskList);
           }),
     );
   }

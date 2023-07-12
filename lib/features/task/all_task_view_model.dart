@@ -4,8 +4,10 @@ import 'package:day_over/product/utility/firebase_custom_exception.dart';
 import 'package:day_over/product/utility/user_custom_exception.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AllTaskNotifier extends StateNotifier<List<TaskModel>> {
-  AllTaskNotifier() : super([]);
+enum AllTaskViewState { idle, busy }
+
+class AllTaskNotifier extends StateNotifier<AllTaskViewState> {
+  AllTaskNotifier() : super(AllTaskViewState.idle);
 
   final UserTaskRepo _userRepo = UserTaskRepo();
 
@@ -13,15 +15,20 @@ class AllTaskNotifier extends StateNotifier<List<TaskModel>> {
     try {
       return _userRepo.getAll();
     } catch (e) {
-      throw UserCustomException(description: "taskler gelmedi.");
+      throw UserCustomException(description: "$e");
     }
   }
 
   Future<void> createTask(String userId, List<TaskModel> tasks) async {
     try {
+      state = AllTaskViewState.busy;
+      Future.delayed(const Duration(microseconds: 3000));
       _userRepo.createTask(userId, tasks);
+      //state = [];
     } catch (e) {
       throw FirebaseCustomException(description: "$e");
+    } finally {
+      state = AllTaskViewState.idle;
     }
   }
 
@@ -53,8 +60,18 @@ class AllTaskNotifier extends StateNotifier<List<TaskModel>> {
     }
     return filteredList;
   }
+}
 
-  //state operations
+final allTaskProvider =
+    StateNotifierProvider<AllTaskNotifier, AllTaskViewState>((ref) {
+  return AllTaskNotifier();
+});
+
+//select item operation
+class SelectNotifier extends StateNotifier<List<TaskModel>> {
+  SelectNotifier() : super([]);
+
+  final UserTaskRepo _userRepo = UserTaskRepo();
 
   void add(TaskModel task) {
     state = [...state, task];
@@ -67,9 +84,18 @@ class AllTaskNotifier extends StateNotifier<List<TaskModel>> {
   void deleteAll() {
     state = [];
   }
+
+  Future<void> createTask(String userId, List<TaskModel> tasks) async {
+    try {
+      _userRepo.createTask(userId, tasks);
+      state = [];
+    } catch (e) {
+      throw FirebaseCustomException(description: "$e");
+    }
+  }
 }
 
-final allTaskProvider =
-    StateNotifierProvider<AllTaskNotifier, List<TaskModel>>((ref) {
-  return AllTaskNotifier();
+final selectItemProvider =
+    StateNotifierProvider<SelectNotifier, List<TaskModel>>((ref) {
+  return SelectNotifier();
 });

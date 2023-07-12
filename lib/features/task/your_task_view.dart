@@ -26,27 +26,46 @@ class _YourTaskViewState extends ConsumerState<YourTaskView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ref.watch(yourTaskProvider) == YourTaskViewState.idle
-            ? FutureBuilder(
-                future: getYourTask(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                            padding: const EdgeInsets.all(8.0),
+      body: ref.watch(yourTaskProvider) == YourTaskViewState.idle
+          ? FutureBuilder(
+              future: getYourTask(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Dismissible(
+                            key: ValueKey(snapshot.data![index].taskId),
+                            onDismissed: (direction) {
+                              //kredi toplama işlemi
+                              ref
+                                  .read(creditProvider.notifier)
+                                  .increment(snapshot.data![index].credit);
+                              //silme işlemi
+                              ref.read(yourTaskProvider.notifier).deleteTask(
+                                  ref.watch(userUidProvider),
+                                  snapshot.data![index]);
+                            },
                             child: CustomYourTaskListItem(
                                 task: snapshot.data![index],
                                 backgroundColor:
-                                    ColorConstants.taskListItemLastColor));
-                      },
-                    );
-                  } else {
-                    return const CustomCircularIndicator();
-                  }
-                },
-              )
-            : const CustomCircularIndicator());
+                                    ColorConstants.taskListItemLastColor),
+                          ));
+                    },
+                  );
+                } else {
+                  return const CustomCircularIndicator();
+                }
+              },
+            )
+          : const CustomCircularIndicator(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print("Toplanılan kredi : ${ref.watch(creditProvider)}");
+        },
+      ),
+    );
   }
 }

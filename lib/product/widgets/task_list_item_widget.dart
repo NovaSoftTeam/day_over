@@ -7,11 +7,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class TaskListItem extends ConsumerStatefulWidget {
   final TaskModel task;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   const TaskListItem({
     super.key,
+    this.backgroundColor = Colors.blue,
     required this.task,
-    required this.backgroundColor,
   });
 
   @override
@@ -43,14 +43,15 @@ class _TaskListItemState extends ConsumerState<TaskListItem> {
               isSelected = !isSelected;
             });
             if (value!) {
-              ref.read(allTaskProvider.notifier).add(widget.task);
+              //ref.read(allTaskProvider.notifier).add(widget.task);
+              ref.read(selectItemProvider.notifier).add(widget.task);
             }
             if (value == false) {
-              ref.read(allTaskProvider.notifier).remove(widget.task.taskId);
+              //ref.read(allTaskProvider.notifier).remove(widget.task.taskId);
+              ref.read(selectItemProvider.notifier).remove(widget.task.taskId);
             }
           },
         ),
-        trailing: Image.asset(ImagePathConstants.coinImage, height: 20),
         onTap: () {
           //print("${widget.task.description} tıklandı");
         },
@@ -58,9 +59,21 @@ class _TaskListItemState extends ConsumerState<TaskListItem> {
           widget.task.description,
           style: const TextStyle(color: ColorConstants.white),
         ),
-        subtitle: Text(
-          "${widget.task.credit}",
-          style: const TextStyle(color: ColorConstants.white),
+        subtitle: Row(
+          children: [
+            Image.asset(
+              ImagePathConstants.coinImage,
+              width: 20,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              "${widget.task.credit}",
+              style:
+                  const TextStyle(color: ColorConstants.white),
+            ),
+          ],
         ),
       ),
     );
