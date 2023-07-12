@@ -36,4 +36,13 @@ class UserTaskRepo extends BaseUserTask {
       await _taskService.createTask(userId, tasks);
     }
   }
+
+  @override
+  Future<void> deleteTask(String userId, TaskModel task) async {
+    if (appMode == AppMode.debug) {
+      await _fakeService.deleteTask(userId, task);
+    } else {
+      await _taskService.deleteTask(userId, task);
+    }
+  }
 }

@@ -71,4 +71,22 @@ class FirebaseTaskService implements BaseUserTask {
       throw FirebaseCustomException(description: "$e");
     }
   }
+
+  @override
+  Future<void> deleteTask(String userId, TaskModel task) async {
+    try {
+      await firestore.collection("your_tasks").doc(userId).update({
+        'tasks': FieldValue.arrayRemove([
+          {
+            'id': task.taskId,
+            'description': task.description,
+            'credit': task.credit
+          }
+        ])
+      });
+      print("silindi mi bak");
+    } catch (e) {
+      throw FirebaseCustomException(description: "$e");
+    }
+  }
 }

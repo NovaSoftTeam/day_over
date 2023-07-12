@@ -16,7 +16,6 @@ class AllTaskView extends ConsumerStatefulWidget {
 class _AllTaskViewState extends ConsumerState<AllTaskView> {
   @override
   Widget build(BuildContext context) {
-    print("build tetiklendi");
     return Scaffold(
       body: FutureBuilder(
         future: ref

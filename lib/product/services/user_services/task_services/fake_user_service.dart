@@ -28,4 +28,9 @@ class FakeUserTaskService extends BaseUserTask {
   Future<List<TaskModel>> getYourTasks(String userId) {
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> deleteTask(String userId, TaskModel task) {
+    throw UnimplementedError();
+  }
 }

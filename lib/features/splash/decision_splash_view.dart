@@ -1,3 +1,4 @@
+import 'package:day_over/features/dashboard/dashboard.dart';
 import 'package:day_over/features/sign_in/sign_in_view.dart';
 import 'package:day_over/features/splash/splash_view_model.dart';
 import 'package:day_over/features/task/task_view.dart';

@@ -1,17 +1,14 @@
 import 'package:day_over/product/models/task_model.dart';
 import 'package:day_over/product/repository/user_task_repo.dart';
-import 'package:day_over/product/services/user_services/task_services/base_user_task.dart';
 import 'package:day_over/product/utility/firebase_custom_exception.dart';
 import 'package:day_over/product/utility/user_custom_exception.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AllTaskNotifier extends StateNotifier<List<TaskModel>>
-    implements BaseUserTask {
+class AllTaskNotifier extends StateNotifier<List<TaskModel>> {
   AllTaskNotifier() : super([]);
 
   final UserTaskRepo _userRepo = UserTaskRepo();
 
-  @override
   Future<List<TaskModel>> getAll() {
     try {
       return _userRepo.getAll();
@@ -20,19 +17,17 @@ class AllTaskNotifier extends StateNotifier<List<TaskModel>>
     }
   }
 
-  @override
-  Future<List<TaskModel>> getYourTasks(String userId) async {
+  Future<void> createTask(String userId, List<TaskModel> tasks) async {
     try {
-      return await _userRepo.getYourTasks(userId);
+      _userRepo.createTask(userId, tasks);
     } catch (e) {
       throw FirebaseCustomException(description: "$e");
     }
   }
 
-  @override
-  Future<void> createTask(String userId, List<TaskModel> tasks) async {
+  Future<List<TaskModel>> getYourTasks(String userId) async {
     try {
-      _userRepo.createTask(userId, tasks);
+      return await _userRepo.getYourTasks(userId);
     } catch (e) {
       throw FirebaseCustomException(description: "$e");
     }
@@ -69,7 +64,7 @@ class AllTaskNotifier extends StateNotifier<List<TaskModel>>
     state = state.where((element) => element.taskId != id).toList();
   }
 
-  void deleteAll(){
+  void deleteAll() {
     state = [];
   }
 }
