@@ -1,3 +1,5 @@
+import 'package:day_over/features/data_page/data_view_model.dart';
+import 'package:day_over/features/sign_up/sign_viev_model.dart';
 import 'package:day_over/product/constants/color_constants.dart';
 import 'package:day_over/product/constants/image_path_constants.dart';
 import 'package:day_over/product/constants/string_constants.dart';
@@ -6,15 +8,16 @@ import 'package:day_over/product/widgets/custom_drawer.dart';
 import 'package:day_over/product/widgets/custom_graphic.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DataView extends StatefulWidget {
+class DataView extends ConsumerStatefulWidget {
   const DataView({Key? key}) : super(key: key);
 
   @override
-  State<DataView> createState() => _DataViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _DataViewState();
 }
 
-class _DataViewState extends State<DataView>
+class _DataViewState extends ConsumerState<DataView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final _unselectedColor = ColorConstants.white;
@@ -190,7 +193,11 @@ class _DataViewState extends State<DataView>
             )
           ],
         ),
+        floatingActionButton: FloatingActionButton(onPressed: () {
+          ref.read(dataViewProvider.notifier).getAll(ref.watch(userUidProvider));
+        },),
       ),
+
     );
   }
 }
@@ -300,3 +307,4 @@ List<FlSpot> aylikVeri = const [
   FlSpot(11, 100),
   FlSpot(12, 150),
 ];
+

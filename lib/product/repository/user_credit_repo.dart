@@ -5,25 +5,27 @@ import 'package:day_over/product/services/user_services/credit_services/firebase
 
 enum AppMode { debug, release }
 
-class UserCreditRepo implements BaseCreditService{
-
+class UserCreditRepo implements BaseCreditService {
   AppMode appMode = AppMode.release;
 
   final FirebaseCreditService _creditService = FirebaseCreditService();
   final FakeCreditService _fakeService = FakeCreditService();
 
   @override
-  Future<void> addCredit(String userId, int credit) async{
-    if(appMode == AppMode.release){
+  Future<void> addCredit(String userId, int credit) async {
+    if (appMode == AppMode.release) {
       await _creditService.addCredit(userId, credit);
-    }else{
-     await _fakeService.addCredit(userId, credit);
+    } else {
+      await _fakeService.addCredit(userId, credit);
     }
   }
 
   @override
-  Future<List<CreditModel>> getAll(String userId) {
-    throw UnimplementedError();
+  Future<List<CreditModel>> getAll(String userId) async {
+    if (appMode == AppMode.release) {
+      return await _creditService.getAll(userId);
+    } else {
+      return await _fakeService.getAll(userId);
+    }
   }
-
 }

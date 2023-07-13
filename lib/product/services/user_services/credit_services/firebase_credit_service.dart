@@ -26,7 +26,23 @@ class FirebaseCreditService implements BaseCreditService {
   }
 
   @override
-  Future<List<CreditModel>> getAll(String userId) {
-    throw UnimplementedError();
+  Future<List<CreditModel>> getAll(String userId) async {
+    try {
+      DocumentSnapshot yourCreditsDocSnapshot =
+          await firestore.collection("your_credits").doc(userId).get();
+      final dynamic data = yourCreditsDocSnapshot.data();
+      final List<dynamic> taskDataList = data['credits'] ?? [];
+
+      List<CreditModel> creditList = taskDataList.map((taskData) {
+        return CreditModel(
+          creditValue: taskData['credit'],
+          creditDate: taskData['creditDate'],
+        );
+      }).toList();
+      print(creditList[0].creditValue);
+      return creditList;
+    } catch (e) {
+      throw FirebaseCustomException(description: "$e");
+    }
   }
 }
