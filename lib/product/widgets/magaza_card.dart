@@ -1,4 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:day_over/product/constants/image_path_constants.dart';
+import 'package:day_over/product/constants/text_fonts_constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomMagazaCard extends StatelessWidget {
@@ -51,7 +53,7 @@ class CustomMagazaCard extends StatelessWidget {
       textSize = MediaQuery.of(context).size.width / 109;
     }
     return Container(
-      color: Color.fromARGB(255, 228, 223, 223),
+      color: const Color.fromARGB(255, 228, 223, 223),
       child: Column(
         children: [
           const SizedBox(
@@ -59,7 +61,7 @@ class CustomMagazaCard extends StatelessWidget {
           ),
           Text(
               style: TextStyle(
-                fontFamily: 'Poppins-Bold',
+                fontFamily: TextFontsConstants.poppinsBold,
                 fontSize: textSize / 2.3,
               ),
               cardName),
@@ -95,18 +97,18 @@ class CustomMagazaCard extends StatelessWidget {
                       CircleAvatar(
                         radius: textSize / 2.3,
                         backgroundImage:
-                            AssetImage('assets/informScreenImages/coin.png'),
+                            const AssetImage(ImagePathConstants.coinImage),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                       Text(
                           style: TextStyle(
-                            fontFamily: 'Poppins-Bold',
+                            fontFamily: TextFontsConstants.poppinsBold,
                             fontSize: textSize / 2.5,
                           ),
                           cardPrice),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                     ],
@@ -139,19 +141,19 @@ class CustomMagazaCard extends StatelessWidget {
                       children: [
                         CircleAvatar(
                             radius: textSize / 2.3,
-                            backgroundImage: AssetImage(
-                              'assets/iconImages/buy.png',
+                            backgroundImage: const AssetImage(
+                              ImagePathConstants.buyIcon,
                             )),
-                        SizedBox(
+                        const SizedBox(
                           width: 7,
                         ),
                         Text(
                             style: TextStyle(
-                              fontFamily: 'Poppins-Bold',
+                              fontFamily: TextFontsConstants.poppinsBold,
                               fontSize: textSize / 2.5,
                             ),
                             'Satın Al'),
-                        SizedBox(
+                        const SizedBox(
                           width: 7,
                         ),
                       ],

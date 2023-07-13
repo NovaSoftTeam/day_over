@@ -19,4 +19,7 @@ class ImagePathConstants {
   //Data Ekranı
   static const String infoIcon = "assets/images/info.png";
   static const String weightScale = "assets/images/day_over_kilo_cizelgesi.png";
+
+  //magaza card
+  static const String buyIcon= "assets/iconImages/buy.png";
 }

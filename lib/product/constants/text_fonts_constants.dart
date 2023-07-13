@@ -10,4 +10,5 @@ class TextFontsConstants {
   static const String glacialIndifferenceBold = "glacial-indifference-bold";
 
   static const String poppinsMedium = "Poppins-Medium"; 
+  static const String poppinsBold = "Poppins-Bold";
 }

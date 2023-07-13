@@ -3,8 +3,6 @@ import 'package:day_over/product/widgets/custom_drawer.dart';
 import 'package:day_over/product/widgets/magaza_card.dart';
 import 'package:flutter/material.dart';
 import 'package:day_over/product/constants/color_constants.dart';
-import 'package:day_over/product/constants/image_path_constants.dart';
-import 'package:day_over/product/constants/string_constants.dart';
 
 class Market extends StatefulWidget {
   const Market({super.key});
@@ -41,9 +39,7 @@ class _MarketState extends State<Market> with SingleTickerProviderStateMixin {
       ColorConstants.taskListItemFirstColor,
       ColorConstants.taskListItemLastColor
     ];
-    final double itemHeight = 170;
-    final double itemWidth = 150;
-    List<CustomMagazaCard> cards = [
+    List<CustomMagazaCard> cards = const [
       CustomMagazaCard(
         cardName: 'Abby Jhhony',
         cardAsset: 'assets/iconImages/sticker.png',
@@ -121,29 +117,27 @@ class _MarketState extends State<Market> with SingleTickerProviderStateMixin {
                       tabs: _tabs,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                 ],
               ),
-              Container(
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 5,
-                    crossAxisSpacing: 5,
-                    crossAxisCount:
-                        (MediaQuery.of(context).size.width / 150).toInt(),
-                  ),
-                  controller: new ScrollController(keepScrollOffset: false),
-                  shrinkWrap: true,
-                  itemCount: cards.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: cards[index],
-                    );
-                  },
+              GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisSpacing: 5,
+                  crossAxisSpacing: 5,
+                  crossAxisCount:
+                      MediaQuery.of(context).size.width ~/ 150,
                 ),
+                controller: ScrollController(keepScrollOffset: false),
+                shrinkWrap: true,
+                itemCount: cards.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: cards[index],
+                  );
+                },
               ),
             ],
           ),
