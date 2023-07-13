@@ -84,7 +84,6 @@ class FirebaseTaskService implements BaseUserTask {
           }
         ])
       });
-      print("silindi mi bak");
     } catch (e) {
       throw FirebaseCustomException(description: "$e");
     }

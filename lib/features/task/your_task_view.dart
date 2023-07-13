@@ -26,7 +26,7 @@ class _YourTaskViewState extends ConsumerState<YourTaskView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ref.watch(yourTaskProvider) == YourTaskViewState.idle
+      body: ref.watch(yourTaskProvider) == YourViewState.idle
           ? FutureBuilder(
               future: getYourTask(),
               builder: (context, snapshot) {
@@ -62,8 +62,12 @@ class _YourTaskViewState extends ConsumerState<YourTaskView> {
             )
           : const CustomCircularIndicator(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print("Toplanılan kredi : ${ref.watch(creditProvider)}");
+        onPressed: () async {
+          String userId = ref.watch(userUidProvider);
+          int credit = ref.watch(creditProvider);
+          print("credi : $credit");
+          ref.read(yourTaskProvider.notifier).addCredit(userId, credit);
+          ref.watch(creditProvider.notifier).reset();
         },
       ),
     );

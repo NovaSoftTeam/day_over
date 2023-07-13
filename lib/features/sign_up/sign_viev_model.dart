@@ -51,20 +51,20 @@ class SignViewNotifier extends StateNotifier<ViewState> implements AuthBase {
   }
 }
 
-final signViewProvider = StateNotifierProvider<SignViewNotifier, ViewState>((ref) {
+final signViewProvider =
+    StateNotifierProvider<SignViewNotifier, ViewState>((ref) {
   return SignViewNotifier();
 });
 
-
 // userid'i istediğimiz her yerden okumak için
 class UserUidNotifier extends StateNotifier<String> {
-  UserUidNotifier(): super("");
-  
-  void changeUserId(String userId){
+  UserUidNotifier() : super("");
+
+  void changeUserId(String userId) {
     state = userId;
   }
 }
 
-final userUidProvider = StateNotifierProvider<UserUidNotifier,String>((ref) {
+final userUidProvider = StateNotifierProvider<UserUidNotifier, String>((ref) {
   return UserUidNotifier();
 });
