@@ -1,4 +1,3 @@
-import 'package:day_over/features/marketScreen/market.dart';
 import 'package:day_over/features/splash/splash_view.dart';
 import 'package:day_over/product/initialize/app_start.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Market(),
+      home: const SplashView(),
     );
   }
 }

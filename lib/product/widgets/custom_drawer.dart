@@ -1,3 +1,7 @@
+import 'package:day_over/features/data_page/data_view.dart';
+import 'package:day_over/features/marketScreen/market.dart';
+import 'package:day_over/features/profileScreen/profile.dart';
+import 'package:day_over/features/task/task_view.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -21,29 +25,61 @@ class CustomDrawer extends StatelessWidget {
               ],
             ),
           ),
-          const ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Ana Sayfa'),
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text('Ana Sayfa'),
+            onTap: () {
+              //routing
+            },
           ),
-          const ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Profil'),
+          ListTile(
+            leading: const Icon(Icons.person),
+            title: const Text('Profil'),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return const Profile();
+                },
+              ));
+            },
           ),
-          const ListTile(
-            leading: Icon(Icons.graphic_eq),
-            title: Text('Veriler'),
+          ListTile(
+            leading: const Icon(Icons.graphic_eq),
+            title: const Text('Veriler'),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return const DataView();
+                },
+              ));
+            },
           ),
-          const ListTile(
-            leading: Icon(Icons.store),
-            title: Text('Mağaza'),
+          ListTile(
+            leading: const Icon(Icons.store),
+            title: const Text('Mağaza'),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return const Market();
+                },
+              ));
+            },
           ),
-          const ListTile(
-            leading: Icon(Icons.art_track),
-            title: Text('Art Book'),
+          ListTile(
+            leading: const Icon(Icons.art_track),
+            title: const Text('Art Book'),
+            onTap: () {},
           ),
-          const ListTile(
-            leading: Icon(Icons.check),
-            title: Text('Görevler'),
+          ListTile(
+            leading: const Icon(Icons.check),
+            title: const Text('Görevler'),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return const TaskView();
+                },
+              ));
+            },
           ),
         ],
       ),
