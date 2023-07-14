@@ -1,3 +1,4 @@
+import 'package:day_over/artBookScreen/artBook.dart';
 import 'package:day_over/features/data_page/data_view.dart';
 import 'package:day_over/features/marketScreen/market.dart';
 import 'package:day_over/features/profileScreen/profile.dart';
@@ -68,7 +69,13 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.art_track),
             title: const Text('Art Book'),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return const ArtBook();
+                },
+              ));
+            },
           ),
           ListTile(
             leading: const Icon(Icons.check),

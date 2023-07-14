@@ -17,40 +17,42 @@ class CustomMagazaCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double textSize = 0;
     if (MediaQuery.of(context).size.width < 300) {
-      textSize = MediaQuery.of(context).size.width / 8;
+      textSize = MediaQuery.of(context).size.width / 10;
     } else if (MediaQuery.of(context).size.width < 450 &&
         MediaQuery.of(context).size.width >= 300) {
-      textSize = MediaQuery.of(context).size.width / 17;
+      textSize = MediaQuery.of(context).size.width / 18;
     } else if (MediaQuery.of(context).size.width < 600 &&
         MediaQuery.of(context).size.width >= 450) {
-      textSize = MediaQuery.of(context).size.width / 26;
+      textSize = MediaQuery.of(context).size.width / 28;
     } else if (MediaQuery.of(context).size.width < 750 &&
         MediaQuery.of(context).size.width >= 600) {
-      textSize = MediaQuery.of(context).size.width / 34;
+      textSize = MediaQuery.of(context).size.width / 36;
     } else if (MediaQuery.of(context).size.width < 900 &&
         MediaQuery.of(context).size.width >= 750) {
-      textSize = MediaQuery.of(context).size.width / 43;
+      textSize = MediaQuery.of(context).size.width / 45;
     } else if (MediaQuery.of(context).size.width < 1050 &&
         MediaQuery.of(context).size.width >= 900) {
-      textSize = MediaQuery.of(context).size.width / 51;
+      textSize = MediaQuery.of(context).size.width / 52;
     } else if (MediaQuery.of(context).size.width < 1200 &&
         MediaQuery.of(context).size.width >= 1050) {
-      textSize = MediaQuery.of(context).size.width / 61;
+      textSize = MediaQuery.of(context).size.width / 62;
     } else if (MediaQuery.of(context).size.width < 1350 &&
         MediaQuery.of(context).size.width >= 1200) {
-      textSize = MediaQuery.of(context).size.width / 70;
+      textSize = MediaQuery.of(context).size.width / 71;
     } else if (MediaQuery.of(context).size.width < 1500 &&
         MediaQuery.of(context).size.width >= 1350) {
-      textSize = MediaQuery.of(context).size.width / 79;
+      textSize = MediaQuery.of(context).size.width / 80;
     } else if (MediaQuery.of(context).size.width < 1650 &&
         MediaQuery.of(context).size.width >= 1500) {
-      textSize = MediaQuery.of(context).size.width / 89;
+      textSize = MediaQuery.of(context).size.width / 90;
     } else if (MediaQuery.of(context).size.width < 1800 &&
         MediaQuery.of(context).size.width >= 1650) {
-      textSize = MediaQuery.of(context).size.width / 99;
+      textSize = MediaQuery.of(context).size.width / 100;
     } else if (MediaQuery.of(context).size.width <= 1920 &&
         MediaQuery.of(context).size.width >= 1800) {
-      textSize = MediaQuery.of(context).size.width / 109;
+      textSize = MediaQuery.of(context).size.width / 110;
+    } else {
+      textSize = MediaQuery.of(context).size.width / 200;
     }
     return Container(
       color: const Color.fromARGB(255, 228, 223, 223),
