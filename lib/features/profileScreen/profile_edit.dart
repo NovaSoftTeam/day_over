@@ -94,7 +94,7 @@ class _ProfileEditState extends ConsumerState<ProfileEdit> {
                       child: const CircleAvatar(
                         backgroundImage:
                             AssetImage('assets/informScreenImages/rick.png'),
-                        radius: 60,
+                        radius: 80,
                       ),
                     ),
                     TextButton(
