@@ -1,46 +1,14 @@
 import 'package:day_over/product/widgets/artbook_card.dart';
-import 'package:day_over/product/widgets/custom_app_bar.dart';
 import 'package:day_over/product/widgets/custom_app_bar_search.dart';
 import 'package:day_over/product/widgets/custom_drawer.dart';
-import 'package:day_over/product/widgets/magaza_card.dart';
 import 'package:flutter/material.dart';
-import 'package:day_over/product/constants/color_constants.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ArtBook extends StatefulWidget {
-  const ArtBook({super.key});
-
-  @override
-  State<ArtBook> createState() => _ArtBookState();
-}
-
-class _ArtBookState extends State<ArtBook> with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-  final _unselectedColor = ColorConstants.white;
-  final _tabs = const <Widget>[
-    Tab(
-      text: 'Sticker',
-    ),
-    Tab(text: 'Gıda'),
-  ];
+class ArtBookView extends ConsumerWidget {
+  const ArtBookView({super.key});
 
   @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final gradientColors = [
-      ColorConstants.taskListItemFirstColor,
-      ColorConstants.taskListItemLastColor
-    ];
+  Widget build(BuildContext context, WidgetRef ref) {
     List<ArtBookCard> cards = const [
       ArtBookCard(
         cardName: 'Abby Jhhony',
@@ -67,6 +35,7 @@ class _ArtBookState extends State<ArtBook> with SingleTickerProviderStateMixin {
         cardAsset: 'assets/iconImages/sticker.png',
       ),
     ];
+
     return SafeArea(
       child: Scaffold(
         drawer: const CustomDrawer(),
@@ -75,14 +44,7 @@ class _ArtBookState extends State<ArtBook> with SingleTickerProviderStateMixin {
             children: [
               const CustomAppBarSearch(appBarText: "Art Book"),
               const SizedBox(
-                height: 10,
-              ),
-              Column(
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ],
+                height: 30,
               ),
               GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

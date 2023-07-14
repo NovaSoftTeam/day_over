@@ -40,4 +40,11 @@ class StringConstants {
   //Data Ekranı
   static const String earnCredit = "Kazanılan Krediler";
   static const String bodyMassIndex = "Vücut Kitle İndeksi";
+
+  static const String profilePage = "Profil";
+  static const String mainPage = "Ana Sayfa";
+  static const String shopPage = "Mağaza";
+  static const String artBookPage = "Art Book";
+  static const String dataPage = "Veriler";
+  static const String taskPage = "Görevler";
 }

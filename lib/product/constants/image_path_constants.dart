@@ -22,4 +22,7 @@ class ImagePathConstants {
 
   //magaza card
   static const String buyIcon= "assets/iconImages/buy.png";
+
+  //custom draw
+  static const String dayOverDrawerImage = "assets/informScreenImages/DAYOVER.png";
 }
