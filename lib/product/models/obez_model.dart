@@ -1,11 +1,4 @@
-class CurrentUserModel {
-  final String userId;
-
-  CurrentUserModel({required this.userId});
-}
-
-class CurrenUserData {
-  final String userId;
+class Obez {
   final String ad;
   final String boy;
   final String cinsiyet;
@@ -13,8 +6,7 @@ class CurrenUserData {
   final String soyad;
   final String yas;
 
-  CurrenUserData({
-    required this.userId,
+  Obez({
     required this.ad,
     required this.boy,
     required this.cinsiyet,

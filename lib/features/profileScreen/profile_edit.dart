@@ -1,3 +1,5 @@
+import 'package:day_over/features/profileScreen/update_user_widget.dart';
+import 'package:day_over/features/sign_up/sign_viev_model.dart';
 import 'package:day_over/product/constants/color_constants.dart';
 import 'package:day_over/product/constants/string_constants.dart';
 import 'package:day_over/product/constants/text_fonts_constants.dart';
@@ -103,75 +105,7 @@ class _ProfileEditState extends ConsumerState<ProfileEdit> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(18.0),
-                      child: Form(
-                          key: _key,
-                          child: Column(
-                            children: [
-                              CustomFormField(
-                                controller: adController,
-                                labelText: StringConstants.enterName,
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              CustomFormField(
-                                controller: soyadController,
-                                labelText: StringConstants.enterSurname,
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              CustomFormField(
-                                keyBoardType: TextInputType.number,
-                                controller: yasController,
-                                labelText: StringConstants.enterAge,
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              CustomFormField(
-                                keyBoardType: TextInputType.number,
-                                controller: kiloController,
-                                labelText: StringConstants.enterWeight,
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              CustomFormField(
-                                keyBoardType: TextInputType.number,
-                                controller: boyController,
-                                labelText: StringConstants.enterHeight,
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              DropdownButtonFormField(
-                                value: dropdownValue,
-                                decoration: const InputDecoration(
-                                  fillColor: Colors.white,
-                                  filled: true,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Colors.white,
-                                      width: 2.0,
-                                    ),
-                                  ),
-                                ),
-                                items: list.map((gender) {
-                                  return DropdownMenuItem(
-                                    value: gender,
-                                    child: Text(gender),
-                                  );
-                                }).toList(),
-                                onChanged: (val) => setState(
-                                    () => dropdownValue = val.toString()),
-                              ),
-                              const SizedBox(
-                                height: 25,
-                              ),
-                              onSubmitButton(),
-                            ],
-                          )),
+                      child: SettingsForm(),
                     ),
                   ],
                 ),
@@ -179,24 +113,6 @@ class _ProfileEditState extends ConsumerState<ProfileEdit> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget onSubmitButton() {
-    return SizedBox(
-      width: double.infinity,
-      height: 40,
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          backgroundColor: ColorConstants.mainBlueColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-        child: const Text(StringConstants.editProfileButtontText,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
       ),
     );
   }
