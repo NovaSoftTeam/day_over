@@ -68,3 +68,17 @@ class UserUidNotifier extends StateNotifier<String> {
 final userUidProvider = StateNotifierProvider<UserUidNotifier, String>((ref) {
   return UserUidNotifier();
 });
+
+// useridentifier'i istediğimiz her yerden okumak için
+class UserIdentifierNotifier extends StateNotifier<String> {
+  UserIdentifierNotifier() : super("");
+
+  void changeUserIdentifier(String userIdentifier) {
+    state = userIdentifier;
+  }
+}
+
+final userIdentifierProvider =
+    StateNotifierProvider<UserIdentifierNotifier, String>((ref) {
+  return UserIdentifierNotifier();
+});
