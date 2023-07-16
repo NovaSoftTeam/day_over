@@ -1,5 +1,3 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:day_over/product/constants/image_path_constants.dart';
 import 'package:day_over/product/constants/text_fonts_constants.dart';
 import 'package:flutter/material.dart';
 

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:day_over/product/models/current_user_model.dart';
 import 'package:day_over/product/models/obez_model.dart';
-import 'package:day_over/product/utility/firebase_custom_exception.dart';
 
 class DatabaseService {
   //collection reference

@@ -1,9 +1,6 @@
-import 'package:day_over/features/profileScreen/update_user_widget.dart';
-import 'package:day_over/features/sign_up/sign_viev_model.dart';
-import 'package:day_over/product/constants/color_constants.dart';
+import 'package:day_over/features/profile/update_user_widget.dart';
 import 'package:day_over/product/constants/string_constants.dart';
 import 'package:day_over/product/constants/text_fonts_constants.dart';
-import 'package:day_over/product/widgets/custom_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,43 +12,8 @@ class ProfileEdit extends ConsumerStatefulWidget {
 }
 
 class _ProfileEditState extends ConsumerState<ProfileEdit> {
-  late final TextEditingController adController;
-  late final TextEditingController soyadController;
-  late final TextEditingController yasController;
-  late final TextEditingController kiloController;
-  late final TextEditingController boyController;
-  late final GlobalKey _key;
-
-  @override
-  void initState() {
-    super.initState();
-    _key = GlobalKey<FormState>();
-    adController = TextEditingController();
-    soyadController = TextEditingController();
-    yasController = TextEditingController();
-    kiloController = TextEditingController();
-    boyController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    adController.dispose();
-    soyadController.dispose();
-    yasController.dispose();
-    kiloController.dispose();
-    boyController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    final List<String> list = <String>[
-      'Kadın',
-      'Erkek',
-      'Diğer',
-      'Belirtmek İstemiyorum'
-    ];
-    String dropdownValue = 'Belirtmek İstemiyorum';
     double textSize = 0;
     double containerHeight = 0;
     if (MediaQuery.of(context).size.width >
@@ -103,8 +65,8 @@ class _ProfileEditState extends ConsumerState<ProfileEdit> {
                       onPressed: () {},
                       child: const Text(StringConstants.editProfileImageText),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(18.0),
+                    const Padding(
+                      padding: EdgeInsets.all(18.0),
                       child: SettingsForm(),
                     ),
                   ],

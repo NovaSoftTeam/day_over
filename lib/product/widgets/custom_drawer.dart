@@ -1,7 +1,7 @@
 import 'package:day_over/features/art_book/art_book_view.dart';
 import 'package:day_over/features/data_page/data_view.dart';
 import 'package:day_over/features/marketScreen/market.dart';
-import 'package:day_over/features/profileScreen/profile.dart';
+import 'package:day_over/features/profile/profile.dart';
 import 'package:day_over/features/task/task_view.dart';
 import 'package:day_over/product/constants/image_path_constants.dart';
 import 'package:day_over/product/constants/string_constants.dart';
