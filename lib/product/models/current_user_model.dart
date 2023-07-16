@@ -1,7 +1,7 @@
 class CurrentUserModel {
   final String userId;
-
-  CurrentUserModel({required this.userId});
+  final String userIdentifier;
+  CurrentUserModel({required this.userId, required this.userIdentifier});
 }
 
 class CurrenUserData {
