@@ -152,11 +152,11 @@ class _SettingsFormState extends ConsumerState<SettingsForm> {
                     await DatabaseService(uid: ref.watch(userUidProvider))
                         .updateUserData(
                       _currentAd,
-                      _currentSoyad,
-                      _currentYas,
-                      _currentKilo,
                       _currentBoy,
                       dropdownValue,
+                      _currentKilo,
+                      _currentSoyad,
+                      _currentYas,
                     );
                   }
                 },
