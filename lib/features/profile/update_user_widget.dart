@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:day_over/features/sign_up/sign_viev_model.dart';
 import 'package:day_over/product/constants/string_constants.dart';
 import 'package:day_over/product/models/current_user_model.dart';
@@ -14,6 +15,8 @@ class SettingsForm extends ConsumerStatefulWidget {
 }
 
 class _SettingsFormState extends ConsumerState<SettingsForm> {
+  final CollectionReference obezCollection =
+      FirebaseFirestore.instance.collection('users');
   final List<String> list = <String>[
     'Kadın',
     'Erkek',
@@ -21,17 +24,18 @@ class _SettingsFormState extends ConsumerState<SettingsForm> {
     'Belirtmek İstemiyorum'
   ];
 
-  Future<void> editProfileInformation() async{
+  Future<void> editProfileInformation() async {
     bool isValid = _key.currentState!.validate();
     if (isValid) {
       _key.currentState!.save();
-      await DatabaseService(uid: ref.watch(userUidProvider)).updateUserData(
-          adController.text,
-          boyController.text,
-          dropdownValue,
-          kiloController.text,
-          soyadController.text,
-          yasController.text);
+      await obezCollection.doc(ref.watch(userUidProvider)).set({
+        'ad': adController.text,
+        'boy': boyController.text,
+        'cinsiyet': dropdownValue,
+        'kilo': kiloController.text,
+        'soyad': soyadController.text,
+        'yas': yasController.text
+      });
 
       Navigator.of(context).pop();
     }

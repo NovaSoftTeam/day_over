@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:day_over/features/profile/profile_edit.dart';
 import 'package:day_over/features/sign_up/sign_viev_model.dart';
 import 'package:day_over/product/models/current_user_model.dart';
@@ -37,17 +38,19 @@ class _ProfileState extends ConsumerState<Profile> {
     String _currentBoy = '';
     String _currentKilo = '';
     String _currentCinsiyet = '';
-    return StreamBuilder<CurrenUserData>(
-        stream: DatabaseService(uid: ref.watch(userUidProvider)).userData,
+    return StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('users').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            CurrenUserData? userData = snapshot.data;
-            _currentAd = userData!.ad;
-            _currentSoyad = userData.soyad;
-            _currentYas = userData.yas;
-            _currentBoy = userData.boy;
-            _currentKilo = userData.kilo;
-            _currentCinsiyet = userData.cinsiyet;
+            if (!snapshot.data!.docs.isEmpty) {
+              QuerySnapshot? userData = snapshot.data;
+              _currentAd = userData!.docs[0]['ad'] as String;
+              _currentSoyad = userData.docs[0]['soyad'] as String;
+              _currentYas = userData.docs[0]['yas'] as String;
+              _currentCinsiyet = userData.docs[0]['cinsiyet'] as String;
+              _currentBoy = userData.docs[0]['boy'] as String;
+              _currentKilo = userData.docs[0]['kilo'] as String;
+            }
             return SafeArea(
               child: Scaffold(
                 drawer: const CustomDrawer(),
@@ -64,11 +67,27 @@ class _ProfileState extends ConsumerState<Profile> {
                               SizedBox(
                                 height: containerHeight / 20,
                               ),
-                              const CircleAvatar(
-                                radius: 60,
-                                backgroundImage: AssetImage(
-                                    'assets/informScreenImages/rick.png'),
-                              ),
+                              StreamBuilder<QuerySnapshot>(
+                                  stream: FirebaseFirestore.instance
+                                      .collection('users')
+                                      .doc(ref.watch(userUidProvider))
+                                      .collection('images')
+                                      .snapshots(),
+                                  builder: (context, snapshot) {
+                                    return CircleAvatar(
+                                      radius: 60,
+                                      backgroundImage: snapshot.hasData == true
+                                          ? snapshot.data!.docs.isEmpty == true
+                                              ? AssetImage(
+                                                  'assets/informScreenImages/rick.png')
+                                              : NetworkImage(snapshot
+                                                          .data!.docs[0]
+                                                      ['downloadURL'] as String)
+                                                  as ImageProvider<Object>?
+                                          : AssetImage(
+                                              'assets/informScreenImages/rick.png'),
+                                    );
+                                  }),
                               Text(
                                 style: TextStyle(
                                   fontFamily: TextFontsConstants
