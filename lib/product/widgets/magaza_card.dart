@@ -74,7 +74,7 @@ class CustomMagazaCard extends StatelessWidget {
             widthFactor: 0.6,
             child: Image(
               fit: BoxFit.fill,
-              image: AssetImage(cardAsset),
+              image: NetworkImage(cardAsset),
             ),
           ),
           const SizedBox(
