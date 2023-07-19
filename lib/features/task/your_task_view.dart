@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:day_over/features/sign_up/sign_viev_model.dart';
 import 'package:day_over/features/task/your_task_view_model.dart';
 import 'package:day_over/product/constants/color_constants.dart';
 import 'package:day_over/product/models/task_model.dart';
+import 'package:day_over/product/services/user_services/update_services/update_user_sevice.dart';
 import 'package:day_over/product/widgets/custom_circular_indicator.dart';
 import 'package:day_over/product/widgets/custom_your_task_list_item.dart';
 import 'package:flutter/material.dart';
@@ -38,11 +40,14 @@ class _YourTaskViewState extends ConsumerState<YourTaskView> {
                           padding: const EdgeInsets.all(8.0),
                           child: Dismissible(
                             key: ValueKey(snapshot.data![index].taskId),
-                            onDismissed: (direction) {
+                            onDismissed: (direction) async {
                               //kredi toplama işlemi
                               ref
                                   .read(creditProvider.notifier)
                                   .increment(snapshot.data![index].credit);
+                              //krediye ekleme işlemi
+                              DatabaseService(uid: ref.watch(userUidProvider))
+                                  .updateCreditData(ref.watch(creditProvider));
                               //silme işlemi
                               ref.read(yourTaskProvider.notifier).deleteTask(
                                   ref.watch(userUidProvider),

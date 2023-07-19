@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:day_over/features/marketScreen/food_market.dart';
+import 'package:day_over/features/marketScreen/sticker_market.dart';
 import 'package:day_over/product/widgets/custom_app_bar.dart';
 import 'package:day_over/product/widgets/custom_drawer.dart';
+import 'package:day_over/product/widgets/custom_tab_bar.dart';
 import 'package:day_over/product/widgets/magaza_card.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -15,16 +18,6 @@ class Market extends StatefulWidget {
 
 class _MarketState extends State<Market> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final _unselectedColor = ColorConstants.white;
-  CollectionReference _collectionRef =
-      FirebaseFirestore.instance.collection('stickers');
-
-  final _tabs = const <Widget>[
-    Tab(
-      text: 'Sticker',
-    ),
-    Tab(text: 'Gıda'),
-  ];
 
   @override
   void initState() {
@@ -38,130 +31,54 @@ class _MarketState extends State<Market> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
+  final gradientColors = [
+    ColorConstants.taskListItemFirstColor,
+    ColorConstants.taskListItemLastColor
+  ];
+
+  final _tabs = const <Widget>[
+    Tab(
+      text: 'Sticker',
+    ),
+    Tab(text: 'Gıda'),
+  ];
+
+  CollectionReference _collectionRef =
+      FirebaseFirestore.instance.collection('stickers');
+
   @override
   Widget build(BuildContext context) {
     final gradientColors = [
       ColorConstants.taskListItemFirstColor,
       ColorConstants.taskListItemLastColor
     ];
-    List<CustomMagazaCard> cards = const [
-      CustomMagazaCard(
-        cardName: 'Abby Jhhony',
-        cardAsset: 'assets/iconImages/sticker.png',
-        cardPrice: '800',
-      ),
-      CustomMagazaCard(
-        cardName: 'Abby Jhhony',
-        cardAsset: 'assets/iconImages/sticker.png',
-        cardPrice: '800',
-      ),
-      CustomMagazaCard(
-        cardName: 'Abby Jhhony',
-        cardAsset: 'assets/iconImages/sticker.png',
-        cardPrice: '800',
-      ),
-      CustomMagazaCard(
-        cardName: 'Abby Jhhony',
-        cardAsset: 'assets/iconImages/sticker.png',
-        cardPrice: '800',
-      ),
-      CustomMagazaCard(
-        cardName: 'Abby Jhhony',
-        cardAsset: 'assets/iconImages/sticker.png',
-        cardPrice: '800',
-      ),
-      CustomMagazaCard(
-        cardName: 'Abby Jhhony',
-        cardAsset: 'assets/iconImages/sticker.png',
-        cardPrice: '800',
-      ),
-    ];
+
     return SafeArea(
       child: Scaffold(
         drawer: const CustomDrawer(),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const CustomAppBar(appBarText: "Market"),
-              const SizedBox(
-                height: 10,
+        body: Column(
+          children: [
+            const CustomAppBar(appBarText: "Görevler"),
+            const SizedBox(
+              height: 10,
+            ),
+            CustomTabbarMenu(
+                gradientColors: gradientColors,
+                tabController: _tabController,
+                tabs: _tabs),
+            SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: AspectRatio(
+                aspectRatio: 2,
+                child: TabBarView(
+                  controller: _tabController,
+                  children: const [StickerMarket(), FoodMarket()],
+                ),
               ),
-              Column(
-                children: [
-                  Container(
-                    height: kToolbarHeight,
-                    width: MediaQuery.of(context).size.width / 1.5,
-                    padding: const EdgeInsets.only(
-                        top: 10.0, right: 16.0, left: 16.0, bottom: 10.0),
-                    decoration: BoxDecoration(
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color.fromARGB(223, 223, 223, 223),
-                            spreadRadius: 5,
-                            blurRadius: 4,
-                            offset: Offset(4, 8),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(
-                            MediaQuery.of(context).size.height),
-                        gradient: (LinearGradient(
-                          colors: gradientColors,
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ))),
-                    child: TabBar(
-                      controller: _tabController,
-                      indicator: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          25.0,
-                        ),
-                        color: Colors.white,
-                      ),
-                      labelColor: Colors.black,
-                      unselectedLabelColor: _unselectedColor,
-                      tabs: _tabs,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ],
-              ),
-              StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection('stickers')
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else {
-                      return GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisSpacing: 5,
-                          crossAxisSpacing: 5,
-                          crossAxisCount:
-                              MediaQuery.of(context).size.width ~/ 150,
-                        ),
-                        controller: ScrollController(keepScrollOffset: false),
-                        shrinkWrap: true,
-                        itemCount: snapshot.data!.docs.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CustomMagazaCard(
-                              cardName: snapshot.data!.docs[index]['name'],
-                              cardAsset: snapshot.data!.docs[index]['url'],
-                              cardPrice: snapshot.data!.docs[index]['credit'],
-                            ),
-                          );
-                        },
-                      );
-                    }
-                  }),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:day_over/product/constants/color_constants.dart';
 import 'package:day_over/product/constants/image_path_constants.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +7,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class CustomAppBar extends ConsumerWidget {
   final String appBarText;
   final Color? backgroundColor;
-  const CustomAppBar({
-    super.key,
-    required this.appBarText,
-    this.backgroundColor = ColorConstants.white
-  });
+  const CustomAppBar(
+      {super.key,
+      required this.appBarText,
+      this.backgroundColor = ColorConstants.white});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -38,12 +38,27 @@ class CustomAppBar extends ConsumerWidget {
             ),
             onPressed: () {},
             icon: Image.asset(ImagePathConstants.coinImage),
-            label: const Text(
-              "450",
-              style: TextStyle(
-                color: Colors.black,
-              ),
-            ),
+            label: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('activeCredit')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Text(
+                      "0",
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    );
+                  } else {
+                    return Text(
+                      "${snapshot.data!.docs[0]['money'].toString()}",
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    );
+                  }
+                }),
           ),
         ),
       ],
