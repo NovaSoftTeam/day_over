@@ -1,5 +1,6 @@
 import 'package:day_over/features/art_book/art_book_view.dart';
 import 'package:day_over/features/data_page/data_view.dart';
+import 'package:day_over/features/home/home.dart';
 import 'package:day_over/features/marketScreen/market.dart';
 import 'package:day_over/features/profile/profile.dart';
 import 'package:day_over/features/task/task_view.dart';
@@ -32,7 +33,11 @@ class CustomDrawer extends StatelessWidget {
             leading: const Icon(Icons.home),
             title: const Text(StringConstants.mainPage),
             onTap: () {
-              //routing
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return const Home();
+                },
+              ));
             },
           ),
           ListTile(

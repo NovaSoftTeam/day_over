@@ -1,7 +1,6 @@
+import 'package:day_over/features/home/home.dart';
 import 'package:day_over/features/sign_in/sign_in_view.dart';
 import 'package:day_over/features/splash/splash_view_model.dart';
-import 'package:day_over/features/task/task_view.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,7 +13,7 @@ class DecisionSplashView extends ConsumerWidget {
 
     return state == AuthViewState.noAuth
         ? const SignInView()
-        : const TaskView();
+        : const Home();
   }
 }
 
