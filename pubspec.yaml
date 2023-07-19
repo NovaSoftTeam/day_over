@@ -20,6 +20,7 @@ dependencies:
   kartal:
   loading_animation_widget: ^1.2.0+4
   google_nav_bar: ^5.0.6
+
   google_fonts: 
   uuid: ^3.0.7
   google_sign_in: ^6.1.4
@@ -31,6 +32,7 @@ dependencies:
 
   # Product packages
   animated_text_kit: ^4.2.2
+  smooth_page_indicator: ^1.1.0
   fl_chart:
   awesome_dialog: ^2.2.1
   provider: ^6.0.5
@@ -64,6 +66,7 @@ flutter:
     - assets/images/
     - assets/informScreenImages/
     - assets/iconImages/
+    - assets/homelimages/
   #   - images/a_dot_ham.jpeg
 
 
