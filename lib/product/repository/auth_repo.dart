@@ -16,7 +16,8 @@ class AuthRepository implements AuthBase {
     if (appMode == AppMode.debug) {
       return await _authService.createUserWithEmail(email, password);
     } else {
-      return CurrentUserModel(userId: "1900929102909012021");
+      return CurrentUserModel(
+          userId: "1900929102909012021", userIdentifier: '');
     }
   }
 
@@ -25,7 +26,8 @@ class AuthRepository implements AuthBase {
     if (appMode == AppMode.debug) {
       return await _authService.currentUser();
     } else {
-      return CurrentUserModel(userId: "1900929102909012021");
+      return CurrentUserModel(
+          userId: "1900929102909012021", userIdentifier: '');
     }
   }
 
@@ -35,7 +37,8 @@ class AuthRepository implements AuthBase {
     if (appMode == AppMode.debug) {
       return await _authService.signInWithEmail(email, password);
     } else {
-      return CurrentUserModel(userId: "1900929102909012021");
+      return CurrentUserModel(
+          userId: "1900929102909012021", userIdentifier: '');
     }
   }
 }

@@ -26,9 +26,9 @@ class CustomFormField extends StatelessWidget {
         controller.text = newValue!;
       },
       validator: (value) {
-        if (value == null || value.length < 8) {
-          return "$value must not be empty or less than 8 charachters";
-        }
+        // if (value == null || value.length < 8) {
+        //   return "$value must not be empty or less than 8 charachters";
+        // }
       },
       obscureText: isObscureText == null ? false : isObscureText!,
       keyboardType: keyBoardType,

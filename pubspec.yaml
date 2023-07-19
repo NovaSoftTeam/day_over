@@ -20,17 +20,24 @@ dependencies:
   kartal:
   loading_animation_widget: ^1.2.0+4
   google_nav_bar: ^5.0.6
-  google_fonts: ^5.1.0 
+
+  google_fonts: 
+  uuid: ^3.0.7
+  google_sign_in: ^6.1.4
 
   # Firabase packages
-  cloud_firestore: ^4.8.1
+  cloud_firestore: ^4.8.3
   firebase_core: ^2.14.0
   firebase_auth: ^4.6.3
 
   # Product packages
   animated_text_kit: ^4.2.2
   smooth_page_indicator: ^1.1.0
+  fl_chart:
   awesome_dialog: ^2.2.1
+  provider: ^6.0.5
+  image_picker: ^1.0.1
+  firebase_storage: ^11.2.5
 
 dev_dependencies:
   flutter_test:
@@ -62,17 +69,7 @@ flutter:
     - assets/homelimages/
   #   - images/a_dot_ham.jpeg
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
 
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
   fonts:
     - family: glacial-indifference-bold
       fonts:

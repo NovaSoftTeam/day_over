@@ -1,3 +1,10 @@
+import 'package:day_over/features/art_book/art_book_view.dart';
+import 'package:day_over/features/data_page/data_view.dart';
+import 'package:day_over/features/marketScreen/market.dart';
+import 'package:day_over/features/profile/profile.dart';
+import 'package:day_over/features/task/task_view.dart';
+import 'package:day_over/product/constants/image_path_constants.dart';
+import 'package:day_over/product/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -11,7 +18,7 @@ class CustomDrawer extends StatelessWidget {
           DrawerHeader(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/informScreenImages/image.png'),
+                image: AssetImage(ImagePathConstants.dayOverDrawerImage),
                 fit: BoxFit.fill,
               ),
             ),
@@ -21,29 +28,67 @@ class CustomDrawer extends StatelessWidget {
               ],
             ),
           ),
-          const ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Ana Sayfa'),
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text(StringConstants.mainPage),
+            onTap: () {
+              //routing
+            },
           ),
-          const ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Profil'),
+          ListTile(
+            leading: const Icon(Icons.person),
+            title: const Text(StringConstants.profilePage),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return const Profile();
+                },
+              ));
+            },
           ),
-          const ListTile(
-            leading: Icon(Icons.graphic_eq),
-            title: Text('Veriler'),
+          ListTile(
+            leading: const Icon(Icons.graphic_eq),
+            title: const Text(StringConstants.dataPage),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return const DataView();
+                },
+              ));
+            },
           ),
-          const ListTile(
-            leading: Icon(Icons.store),
-            title: Text('Mağaza'),
+          ListTile(
+            leading: const Icon(Icons.store),
+            title: const Text(StringConstants.shopPage),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return const Market();
+                },
+              ));
+            },
           ),
-          const ListTile(
-            leading: Icon(Icons.art_track),
-            title: Text('Art Book'),
+          ListTile(
+            leading: const Icon(Icons.art_track),
+            title: const Text(StringConstants.artBookPage),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return const ArtBookView();
+                },
+              ));
+            },
           ),
-          const ListTile(
-            leading: Icon(Icons.check),
-            title: Text('Görevler'),
+          ListTile(
+            leading: const Icon(Icons.check),
+            title: const Text(StringConstants.taskPage),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return const TaskView();
+                },
+              ));
+            },
           ),
         ],
       ),

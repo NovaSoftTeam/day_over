@@ -49,6 +49,7 @@ class FireBaseAuthService extends AuthBase {
   }
 
   CurrentUserModel userFromFirebase(User userFirebase) {
-    return CurrentUserModel(userId: userFirebase.uid);
+    return CurrentUserModel(
+        userId: userFirebase.uid, userIdentifier: userFirebase.email!);
   }
 }

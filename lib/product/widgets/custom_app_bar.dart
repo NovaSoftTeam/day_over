@@ -1,29 +1,29 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:day_over/product/constants/color_constants.dart';
 import 'package:day_over/product/constants/image_path_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CustomAppBar extends ConsumerWidget {
   final String appBarText;
-  final double textSize;
-  const CustomAppBar({
-    super.key,
-    required this.appBarText,
-    required this.textSize,
-  });
+  final Color? backgroundColor;
+  const CustomAppBar(
+      {super.key,
+      required this.appBarText,
+      this.backgroundColor = ColorConstants.white});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AppBar(
       iconTheme: const IconThemeData(color: Colors.black),
       centerTitle: true,
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       title: Text(
         appBarText,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           fontFamily: 'GlacialIndifference-Regular',
           color: Colors.black,
-          fontSize: textSize,
         ),
       ),
       actions: [
@@ -38,16 +38,30 @@ class CustomAppBar extends ConsumerWidget {
             ),
             onPressed: () {},
             icon: Image.asset(ImagePathConstants.coinImage),
-            label: const Text(
-              '450',
-              style: TextStyle(
-                color: Colors.black,
-              ),
-            ),
+            label: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('activeCredit')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Text(
+                      "0",
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    );
+                  } else {
+                    return Text(
+                      "${snapshot.data!.docs[0]['money'].toString()}",
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    );
+                  }
+                }),
           ),
         ),
       ],
     );
   }
-  
 }
