@@ -60,6 +60,7 @@ class AllTaskNotifier extends StateNotifier<AllTaskViewState> {
     }
     return filteredList;
   }
+
 }
 
 final allTaskProvider =

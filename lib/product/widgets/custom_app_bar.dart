@@ -52,8 +52,8 @@ class CustomAppBar extends ConsumerWidget {
                     );
                   } else {
                     return Text(
-                      "${snapshot.data!.docs[0]['money'].toString()}",
-                      style: TextStyle(
+                      snapshot.data!.docs[0]['money'].toString(),
+                      style: const TextStyle(
                         color: Colors.black,
                       ),
                     );

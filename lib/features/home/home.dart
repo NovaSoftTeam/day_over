@@ -1,7 +1,11 @@
-import 'package:day_over/product/constants/color_constants.dart';
+import 'package:day_over/features/sign_up/sign_viev_model.dart';
+import 'package:day_over/features/task/all_task_view_model.dart';
+import 'package:day_over/product/models/task_model.dart';
 import 'package:day_over/product/widgets/anasayfa_container_slider.dart';
 import 'package:day_over/product/widgets/custom_app_bar.dart';
+import 'package:day_over/product/widgets/custom_circular_indicator.dart';
 import 'package:day_over/product/widgets/custom_drawer.dart';
+import 'package:day_over/product/widgets/main_task_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -20,17 +24,22 @@ class Home extends ConsumerWidget {
       "Obezite birçok hastalık ve erken ölüm için güçlü risk faktörüdür. Obezite sorunu ile karşı karşıya olan 25 yaşındaki bir erkeğin yaşam beklentisi %22 oranında azalmakta ve yaşam süresinden 12 yıl eksilmektedir.",
     ];
 
-    var list = [
-      "30 dk futbol oyna",
-      "25 dk koş",
-      "1 saat yürü",
-      "30 dk voleybol oyna",
-      "ali topa bak",
-      "30 dk voleybol oyna",
-      "ali topa bak",
-    ];
     double yukseklik = (MediaQuery.of(context).size.height / 2.60);
-    final _gradientColors = [ColorConstants.taskListItemFirstColor, ColorConstants.taskListItemLastColor];
+
+    Future<List<TaskModel>> getTasks() async {
+      List<TaskModel> tasks = await ref
+          .watch(allTaskProvider.notifier)
+          .filteredList(ref.watch(userUidProvider));
+      if (tasks.length <= 5) {
+        return tasks;
+      } else {
+        List<TaskModel> newTasks = [];
+        for (int i = 0; i < 4; i++) {
+          newTasks.add(tasks[i]);
+        }
+        return newTasks;
+      }
+    }
 
     return SafeArea(
       child: Scaffold(
@@ -123,33 +132,6 @@ class Home extends ConsumerWidget {
                         width: MediaQuery.of(context).size.width / 1.2,
                         height: yukseklik,
                         padding: const EdgeInsets.all(10),
-                        child: ListView.builder(
-                          itemCount: list.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              margin: const EdgeInsets.only(bottom: 10),
-                              height: kToolbarHeight,
-                              width: MediaQuery.of(context).size.width / 2,
-                              padding: const EdgeInsets.only(
-                                top: 20.0,
-                                right: 16.0,
-                                left: 16.0,
-                                bottom: 10.0,
-                              ),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                    MediaQuery.of(context).size.height,
-                                  ),
-                                  color: Colors.blue),
-                              child: Text(
-                                list[index],
-                                style: const TextStyle(
-                                  color: ColorConstants.white,
-                                ),
-                              ),
-                            );
-                          },
-                        ),
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: const Color.fromARGB(246, 246, 246, 246),
@@ -164,6 +146,25 @@ class Home extends ConsumerWidget {
                               offset: Offset(4, 8),
                             ),
                           ],
+                        ),
+                        child: FutureBuilder(
+                          future: getTasks(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return ListView.builder(
+                                itemCount: snapshot.data!.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: MainTaskItem(
+                                        task: snapshot.data![index],
+                                      ));
+                                },
+                              );
+                            } else {
+                              return const CustomCircularIndicator();
+                            }
+                          },
                         ),
                       ),
                     ],
