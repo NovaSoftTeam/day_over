@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:day_over/features/data_page/data_view_model.dart';
 import 'package:day_over/features/sign_up/sign_viev_model.dart';
 import 'package:day_over/product/constants/color_constants.dart';
@@ -28,13 +29,58 @@ class _DataViewState extends ConsumerState<DataView>
     Tab(text: 'Ay'),
     Tab(text: 'Yıl'),
   ];
-
+  double BMI = 0;
+  String imagePath = "assets/images/body_scale_5.png"; // Initialize here
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      _getDataOnPageLoad(); // Sayfa açıldığında verileri çekmek için çağırıyoruz.
+
+    });
   }
 
+  Future<void> _getDataOnPageLoad() async {
+    var userUid = ref.watch(userUidProvider);
+    var userData = await getData(userUid);
+    print(userData); // Firestore'dan gelen verilere ulaşabilirsiniz.
+    double kg=double.parse(userData['kilo']);
+    double m=double.parse(userData['boy']);
+    BMI=kg/((m/100)*(m/100));
+    print("BMI değerin: ");
+    print(BMI);
+    if (BMI <= 18.5) {
+      imagePath = "assets/images/body_scale_1.png";
+    } else if (BMI > 18.5 && BMI <= 24.9) {
+      imagePath = "assets/images/body_scale_2.png";
+    } else if (BMI > 25 && BMI <= 29.9) {
+      imagePath = "assets/images/body_scale_3.png";
+    } else if (BMI > 25 && BMI <= 29.9) {
+      imagePath = "assets/images/body_scale_4.png";
+    } else {
+      imagePath = "assets/images/body_scale_5.png";
+    }
+      setState(() {});
+  }
+  Future<Map<String, dynamic>> getData(String userUid) async {
+    try {
+      DocumentSnapshot snapshot = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(userUid)
+          .get();
+      if (snapshot.exists) {
+        var userData = snapshot.data() as Map<String, dynamic>;
+        return userData;
+      } else {
+        print("Kullanıcı verileri bulunamadı!");
+        return {}; // Boş bir Map döndürüyoruz.
+      }
+    } catch (e) {
+      print('Hata: $e');
+      return {}; // Boş bir Map döndürüyoruz.
+    }
+  }
   @override
   void dispose() {
     _tabController.dispose();
@@ -57,19 +103,7 @@ class _DataViewState extends ConsumerState<DataView>
       ColorConstants.taskListItemLastColor
     ];
 
-    var bmi = 24;
-    String imagePath;
-    if (bmi <= 18.5) {
-      imagePath = "assets/images/body_scale_1.png";
-    } else if (bmi > 18.5 && bmi <= 24.9) {
-      imagePath = "assets/images/body_scale_2.png";
-    } else if (bmi > 25 && bmi <= 29.9) {
-      imagePath = "assets/images/body_scale_3.png";
-    } else if (bmi > 25 && bmi <= 29.9) {
-      imagePath = "assets/images/body_scale_4.png";
-    } else {
-      imagePath = "assets/images/body_scale_5.png";
-    }
+
 
     return SafeArea(
       child: Scaffold(
@@ -193,11 +227,7 @@ class _DataViewState extends ConsumerState<DataView>
             )
           ],
         ),
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          ref.read(dataViewProvider.notifier).getAll(ref.watch(userUidProvider));
-        },),
       ),
-
     );
   }
 }
@@ -307,4 +337,3 @@ List<FlSpot> aylikVeri = const [
   FlSpot(11, 100),
   FlSpot(12, 150),
 ];
-

@@ -69,13 +69,12 @@ class _SignInViewState extends ConsumerState<SignInView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    Container(
                       width: MediaQuery.of(context).size.width,
                       child: Image(
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height / 1.55,
-                        image:
-                            const AssetImage(ImagePathConstants.signInAppImage),
+                        image: const AssetImage(ImagePathConstants.signInAppImage),
                         alignment: Alignment.topCenter,
                       ),
                     ),
