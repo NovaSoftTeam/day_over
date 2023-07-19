@@ -8,6 +8,8 @@ class DatabaseService {
   DatabaseService({required this.uid});
   final CollectionReference obezCollection =
       FirebaseFirestore.instance.collection('users');
+  final CollectionReference creditCollection =
+      FirebaseFirestore.instance.collection('activeCredit');
   Future updateUserData(
     String ad,
     String boy,
@@ -23,6 +25,16 @@ class DatabaseService {
       'kilo': kilo,
       'soyad': soyad,
       'yas': yas,
+    });
+  }
+
+  Future updateCreditData(int addedCredit) async {
+    final activeCredit = await creditCollection
+        .doc(uid)
+        .get()
+        .then((value) => value.get('money'));
+    return await creditCollection.doc(uid).set({
+      'money': activeCredit + addedCredit,
     });
   }
 
@@ -53,7 +65,7 @@ class DatabaseService {
     );
   }
 
-  //get brews stream
+  //get obez stream
   Stream<List<Obez>> get brews {
     return obezCollection.snapshots().map(_brewListFromSnapshot);
   }
