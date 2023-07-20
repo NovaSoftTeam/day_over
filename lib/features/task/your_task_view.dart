@@ -47,7 +47,7 @@ class _YourTaskViewState extends ConsumerState<YourTaskView> {
                                   .increment(snapshot.data![index].credit);
                               //krediye ekleme işlemi
                               DatabaseService(uid: ref.watch(userUidProvider))
-                                  .updateCreditData(ref.watch(creditProvider));
+                                  .updateCreditDataAdd(ref.watch(creditProvider));
                               //silme işlemi
                               ref.read(yourTaskProvider.notifier).deleteTask(
                                   ref.watch(userUidProvider),

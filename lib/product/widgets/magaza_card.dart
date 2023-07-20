@@ -1,9 +1,12 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:day_over/features/sign_up/sign_viev_model.dart';
 import 'package:day_over/product/constants/image_path_constants.dart';
 import 'package:day_over/product/constants/text_fonts_constants.dart';
+import 'package:day_over/product/services/user_services/update_services/update_user_sevice.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CustomMagazaCard extends StatelessWidget {
+class CustomMagazaCard extends ConsumerStatefulWidget {
   const CustomMagazaCard(
       {super.key,
       required this.cardName,
@@ -13,6 +16,11 @@ class CustomMagazaCard extends StatelessWidget {
   final String cardAsset;
   final String cardPrice;
 
+  @override
+  ConsumerState<CustomMagazaCard> createState() => _CustomMagazaCardState();
+}
+
+class _CustomMagazaCardState extends ConsumerState<CustomMagazaCard> {
   @override
   Widget build(BuildContext context) {
     double textSize = 0;
@@ -66,7 +74,7 @@ class CustomMagazaCard extends StatelessWidget {
                 fontFamily: TextFontsConstants.poppinsBold,
                 fontSize: textSize / 2.3,
               ),
-              cardName),
+              widget.cardName),
           const SizedBox(
             height: 5,
           ),
@@ -74,7 +82,7 @@ class CustomMagazaCard extends StatelessWidget {
             widthFactor: 0.6,
             child: Image(
               fit: BoxFit.fill,
-              image: NetworkImage(cardAsset),
+              image: NetworkImage(widget.cardAsset),
             ),
           ),
           const SizedBox(
@@ -109,7 +117,7 @@ class CustomMagazaCard extends StatelessWidget {
                             fontFamily: TextFontsConstants.poppinsBold,
                             fontSize: textSize / 2.5,
                           ),
-                          cardPrice),
+                          widget.cardPrice),
                       const SizedBox(
                         width: 15,
                       ),
@@ -127,10 +135,11 @@ class CustomMagazaCard extends StatelessWidget {
                       btnCancelText: "İptal",
                       btnOkText: "Satın al",
                       title: "Satın almak istiyor musunuz?",
-                      desc: "Stickerlar sınırlı sayıdadır!",
                       btnCancelOnPress: () {},
                       btnOkOnPress: () {
-                        print("Satın aldın");
+                        DatabaseService(
+                          uid: ref.watch(userUidProvider),
+                        ).updateCreditDataRemove(int.parse(widget.cardPrice), context);
                       },
                     ).show();
                   },
