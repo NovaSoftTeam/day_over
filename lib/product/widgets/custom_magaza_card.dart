@@ -139,7 +139,8 @@ class _CustomMagazaCardState extends ConsumerState<CustomMagazaCard> {
                       btnOkOnPress: () {
                         DatabaseService(
                           uid: ref.watch(userUidProvider),
-                        ).updateCreditDataRemove(int.parse(widget.cardPrice), context);
+                        ).updateCreditDataRemove(
+                            int.parse(widget.cardPrice), context);
                       },
                     ).show();
                   },

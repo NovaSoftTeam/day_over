@@ -1,11 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:day_over/features/marketScreen/food_market.dart';
 import 'package:day_over/features/marketScreen/sticker_market.dart';
 import 'package:day_over/product/widgets/custom_app_bar.dart';
 import 'package:day_over/product/widgets/custom_drawer.dart';
 import 'package:day_over/product/widgets/custom_tab_bar.dart';
-import 'package:day_over/product/widgets/magaza_card.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:day_over/product/constants/color_constants.dart';
 
@@ -43,9 +40,6 @@ class _MarketState extends State<Market> with SingleTickerProviderStateMixin {
     Tab(text: 'Gıda'),
   ];
 
-  CollectionReference _collectionRef =
-      FirebaseFirestore.instance.collection('stickers');
-
   @override
   Widget build(BuildContext context) {
     final gradientColors = [
@@ -58,7 +52,7 @@ class _MarketState extends State<Market> with SingleTickerProviderStateMixin {
         drawer: const CustomDrawer(),
         body: Column(
           children: [
-            const CustomAppBar(appBarText: "Görevler"),
+            const CustomAppBar(appBarText: "Mağaza"),
             const SizedBox(
               height: 10,
             ),
@@ -66,7 +60,7 @@ class _MarketState extends State<Market> with SingleTickerProviderStateMixin {
                 gradientColors: gradientColors,
                 tabController: _tabController,
                 tabs: _tabs),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Expanded(

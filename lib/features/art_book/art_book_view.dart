@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:day_over/product/widgets/artbook_card.dart';
 import 'package:day_over/product/widgets/custom_app_bar_search.dart';
 import 'package:day_over/product/widgets/custom_drawer.dart';
-import 'package:day_over/product/widgets/magaza_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,33 +10,6 @@ class ArtBookView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<ArtBookCard> cards = const [
-      ArtBookCard(
-        cardName: 'Abby Jhhony',
-        cardAsset: 'assets/iconImages/sticker.png',
-      ),
-      ArtBookCard(
-        cardName: 'Abby Jhhony',
-        cardAsset: 'assets/iconImages/sticker.png',
-      ),
-      ArtBookCard(
-        cardName: 'Abby Jhhony',
-        cardAsset: 'assets/iconImages/sticker.png',
-      ),
-      ArtBookCard(
-        cardName: 'Abby Jhhony',
-        cardAsset: 'assets/iconImages/sticker.png',
-      ),
-      ArtBookCard(
-        cardName: 'Abby Jhhony',
-        cardAsset: 'assets/iconImages/sticker.png',
-      ),
-      ArtBookCard(
-        cardName: 'Abby Jhhony',
-        cardAsset: 'assets/iconImages/sticker.png',
-      ),
-    ];
-
     return SafeArea(
       child: Scaffold(
         drawer: const CustomDrawer(),
