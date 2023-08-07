@@ -54,3 +54,10 @@ The user stores the stickers he bought with the credits he earned on this page. 
 ### Video 📷 :
 
 [Our video presentation](https://www.youtube.com/watch?v=wfAQPobshj4)
+
+## Authors 📃
+
+- Okan Çezik [Github](https://github.com/okancezik) : Authentication, Firebase Cloud Store, Firebase Storage, MVVM arch.
+- Eren Seven [Github](https://github.com/ErenSeven) : Firebase Storage
+- Bahar Arın [Github](https://github.com/baharinn)
+- İbrahim Çakır [Github](https://github.com/aibrhmckr)
